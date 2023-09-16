@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style-responsive.css">
+    <title>Cadastro de Usuário</title>
+</head>
+<body>
+    <header class="header">
+        <h1 class="header-title">Cadastro de Usuário</h1>
+    </header>
+
+    <div class="container">
+                                  
+        <form id="formulario" class="content">                  
+            
+            <!-- Tipo de Perfil -->
+            <div class="form-group">
+                <h3 class="fieldset-label">Escolha o seu perfil</h3>
+                <div class="form-row">
+                    <div class="col-md-6 mb-2">
+                        <div class="col-sm-9">
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="cliente" name="perfil" value="cliente" class="form-check-input">
+                                <label for="cliente" class="form-check-label">Cliente</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-2">
+                        <div class="col-sm-9">
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="prestador" name="perfil" value="prestador" class="form-check-input">
+                                <label for="prestador" class="form-check-label">Prestador de serviço</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>                     
+                    
+                <!-- Opções de Serviço (visíveis apenas para Prestador de Serviço) -->
+                <div class="form-group" id="opcoes-servico" style="display: none;">
+                    <label>Selecione os serviços que você oferece:</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="servico" id="lavar-roupa" value="lavar-roupa">
+                        <label class="form-check-label" for="lavar-roupa">Lavar roupa</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="servico" id="passar-roupa" value="passar-roupa">
+                        <label class="form-check-label" for="passar-roupa">Passar roupa</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="servico" id="limpar-casa" value="limpar-casa">
+                        <label class="form-check-label" for="limpar-casa">Limpar casa</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bloco de Dados Pessoais -->
+            <div class="form-group">
+                <h3 class="fieldset-label">Dados pessoais</h3>
+                <div class="form-row">
+                    <div class="col-md-3 mb-2">
+                        <label for="nome">Nome</label>
+                        <input type="text" class="form-control" id="nome" name="nome" maxlength="50" required>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <label for="sobrenome">Sobrenome</label>
+                        <input type="text" class="form-control" id="sobrenome" name="sobrenome" maxlength="50" required>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <label for="sobrenome">Apelido</label>
+                        <input type="text" class="form-control" id="sobrenome" name="sobrenome" maxlength="50" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-3 mb-2">
+                        <label for="data-nascimento">Data de Nascimento</label>
+                        <input type="date" class="form-control" id="data-nascimento" name="data-nascimento">
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <label for="cpf">CPF</label>
+                        <input type="text" class="form-control" id="cpf" name="cpf" maxlength="14" required>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <label for="telefone">Telefone</label>
+                        <input type="text" class="form-control" id="telefone" name="telefone" maxlength="15" placeholder="(00) 0000-0000" required>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <label for="celular">Celular</label>
+                        <input type="text" class="form-control" id="celular" name="celular" maxlength="16" placeholder="(00) 90000-0000" required>
+                    </div>
+                </div>         
+            </div>
+
+            <!-- Bloco de Dados de Endereço -->
+            <div class="form-group">
+                <h3 class="fieldset-label">Dados de endereço</h3>
+                <div class="form-row">
+                    <div class="col-md-3 mb-2">
+                        <label for="cep">CEP</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="cep" name="cep" maxlength="9" required oninput="handleCepInput()">
+                            <span id="erro-cep" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-7 mb-2">
+                        <label for="rua">Logradouro</label>
+                        <input type="text" class="form-control" id="rua" name="rua" required>
+                        <span id="erro-rua" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <label for="numero">Número</label>
+                        <input type="text" class="form-control" id="numero" name="numero" required>
+                        <span id="erro-numero" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-5 mb-2">
+                        <label for="bairro">Bairro</label>
+                        <input type="text" class="form-control" id="bairro" name="bairro" required>
+                        <span id="erro-bairro" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-5 mb-2">
+                        <label for="cidade">Cidade</label>
+                        <input type="text" class="form-control" id="cidade" name="cidade" required>
+                        <span id="erro-cidade" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <label for="estado">Estado</label>
+                        <select class="form-control" id="estado" name="estado" required size="1">
+                            <option value="">Selecione</option>
+                            <!-- Opções de estados preenchidas dinamicamente via JavaScript -->
+                        </select>
+                        <span id="erro-estado" class="text-danger"></span>
+                    </div>
+                </div>                    
+            </div>
+
+            <!-- Bloco de Registro de Usuário -->
+            <div class="form-group">
+                <h3 class="fieldset-label">Registre a sua conta</h3>
+                <div class="form-row">
+                    <div class="col-md-6 mb-2">
+                        <label for="email">E-mail</label>
+                        <input type="email" class="form-control" id="email" name="email" maxlength="50" required>
+                        <span id="erro-email" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <label for="senha">Senha</label>
+                        <input type="password" class="form-control" id="senha" name="senha" maxlength="12" required>
+                        <span id="erro-senha" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <label for="confirmar-senha">Confirmar Senha</label>
+                        <input type="password" class="form-control" id="confirmar-senha" name="confirmar-senha" maxlength="12" required>
+                        <span id="erro-confirmar-senha" class="text-danger"></span>
+                    </div>
+                </div> 
+                
+                <!-- Aceite dos Termos de Uso -->
+                <div class="form-group">
+                    <div class="form-check">
+                        <input type="checkbox" id="aceite-termos" name="aceite-termos" class="form-check-input">
+                        <label for="aceite-termos" class="form-check-label">
+                            Eu aceito os <a href="URL-dos-Termos-de-Uso">Termos de Uso</a>
+                        </label>
+                    </div>
+                </div>            
+                
+
+                <!-- Botão Enviar (habilitado apenas quando aceitar os termos) -->
+                <div class="text-center">
+                    <button type="submit" class="button" id="btn-enviar" disabled>Enviar</button>
+
+                    <button type="button" class="button" id="btn-voltar">Voltar</button>
+
+                </div>
+            </div>
+        </form>
+    </div>      
+    
+    
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.6/jquery.inputmask.min.js"></script>
+    <script src="validacoes.js"></script>
+    <script src="funcoes.js"></script>
+</html>

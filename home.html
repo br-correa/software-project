@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style-responsive.css">
+    <title>Limpa Já! Deu preguiça é só chamar</title>
+</head>
+<body>
+    <header class="header">
+        <h1 class="header-title">Limpa Já! Deu preguiça é só chamar</h1>
+    </header>
+
+    <div class="container">
+        <nav class="navbar">
+            <button id="toggleMenu" class="menu-button menu-opened">&#9776; Menu</button>
+            <ul id="menuOptions" class="menu-options">
+                <li><a href="#">Início</a></li>
+                <li><a href="#">Serviços</a></li>
+                <li><a href="#">Agendamento</a></li>
+                <li><a href="#">Contato</a></li>
+                <li><a href="#">Encerrar Sessão</a></li>
+            </ul>
+        </nav>
+                           
+        <div class="content">                  
+            <section class="schedule-section">
+                <h3 class="fieldset-label">Agende um Serviço</h3>
+                <div class="button-container">
+                    <button class="button" onclick="agendarServico('Lavar Roupas')">
+                        <img src="download.png" alt="Ícone de Lavar Roupas" /></br>
+                        <span>Lavar Roupas</span>
+                    </button>
+                    <button class="button" onclick="agendarServico('Passar Roupas')">
+                        <img src="download.png" alt="Ícone de Passar Roupas" /></br>
+                        <span>Passar Roupas</span>
+                    </button>
+                    <button class="button" onclick="agendarServico('Limpar Casa')">
+                        <img src="download.png" alt="Ícone de Limpar Casa" /></br>
+                        <span>Limpar Casa</span>
+                    </button>
+                </div>
+            </section></br>            
+                       
+            <section class="my-data-section">
+                <h3 class="fieldset-label">Meus Dados</h3>
+                <div class="button-container">
+                    <button class="button" onclick="meusDados('Sessões na Plataforma')">
+                        <img src="download.png" alt="Ícone de Sessões" /></br>
+                        <span>Sessões na Plataforma</span>
+                    </button>
+                    <button class="button" onclick="meusDados('Dias de Cadastro')">
+                        <img src="download.png" alt="Ícone de Dias de Cadastro" /></br>
+                        <span>Dias de Cadastro</span>
+                    </button>
+                    <button class="button" onclick="meusDados('Serviços Contratados')">
+                        <img src="download.png" alt="Ícone de Serviços Contratados" /></br>
+                        <span>Serviços Contratados</span>
+                    </button>
+                </div>
+            </section>
+            
+            
+        </div>
+    </div>      
+    
+    
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.6/jquery.inputmask.min.js"></script>
+    <script src="validacoes.js"></script>
+    <script src="funcoes.js"></script>
+</html>

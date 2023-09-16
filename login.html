@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style-responsive.css">
+    <title>Limpa Já! Deu preguiça é só chamar - Login</title>
+</head>
+<body>
+    <header class="header">
+        <h1 class="header-title">Seja Bem Vindo ao Limpa Já!</h1>
+    </header>
+
+    <div class="container">
+        <form id="login-form" class="content">
+            <h2 class="text-center">Acesse sua conta</h2></br>
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha:</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <div class="form-group" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <input type="checkbox" id="show-password">
+                        <label for="show-password">Mostrar Senha</label>
+                    </div>
+                    
+
+                </div >
+                <div class="form-group text-center">
+                    <button type="submit" class="button">Entrar</button>
+                </div>
+            
+                <div class="password-reset text-center">
+                    <p>Esqueceu sua senha? <a href="#" class="highlight-link">Clique aqui</a></p>
+                </div>
+                
+                <div class="create-account text-center">
+                    <p>Ainda não tem uma conta? <a href="cadastro-de-usuario.html" class="highlight-link">Crie uma agora</a></p>
+                </div>
+                
+            </div>
+        </form>
+    </div>
+    
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="validacoes.js"></script>
+<script src="funcoes.js"></script>
+
+</html>

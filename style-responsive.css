@@ -1,0 +1,237 @@
+/* Estilos globais */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinhe o conteúdo no topo */
+    min-height: 100vh; /* Garante que a página ocupe a altura inteira da tela */
+}
+
+h2{
+    font-size: 20px;
+}
+
+/*Formulário de Login */
+#login-form {
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabeçalho */
+.header {
+    background-color: #0077b6;
+    color: #fff;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    text-align: center;
+    font-weight: bold;
+}
+
+.header-title {
+    margin: 0;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* Container principal */
+.container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+    align-items: center;
+}
+
+/* Menu Lateral */
+.navbar {
+    background-color: #303030;
+    color: #fff;
+    padding: 10px;
+    width: 250px;
+    text-align: left;
+    overflow-y: auto;
+    position: fixed;
+    top: 50px;
+    left: 0; /* Alterado para 0 para mostrar o menu lateral em telas pequenas */
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: left 0.3s ease;
+}
+
+.menu-button {
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.menu-options {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.menu-options li {
+    margin-bottom: 10px;
+}
+
+.menu-options a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Estilos para telas pequenas (dispositivos móveis) */
+@media screen and (max-width: 768px) {
+    .navbar {
+        left: -250px; /* Manter o menu lateral oculto inicialmente em telas pequenas */
+    }
+
+    .menu-button {
+        margin-top: 10px;
+    }
+
+    .menu-options {
+        display: none;
+    }
+
+    .menu-opened .navbar {
+        left: 0;
+    }
+
+    .menu-opened .menu-options {
+        display: block;
+    }
+}
+
+/* Formulário de Cadastro */
+#formulario {
+    padding: 20px;
+    border-radius: 5px; /* Adicionei bordas arredondadas para melhor aparência */
+    flex-grow: 1;
+    background-color: transparent; /* Adicionei uma cor de fundo para separar o formulário do restante do conteúdo */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para campos de entrada e rótulos */
+input.form-control,
+select.form-control {
+    margin-bottom: 10px;
+    width: 100%;
+    font-size: 14px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Estilos para rótulos de blocos */
+.fieldset-label {
+    font-size: 20px; /* Aumentei o tamanho da fonte para títulos de blocos */
+    margin-top: 20px;
+}
+
+label {
+    font-size: 14px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.highlight-link {
+    color: #00bcd4; /* Define a cor do link como azul */
+    text-decoration: underline; /* Adiciona sublinhado ao link */
+    cursor: pointer; /* Altera o cursor ao passar sobre o link */
+}
+
+/* Estilos para botões */
+button{
+    background-color: #0077b6;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+button:hover {
+    background-color: #005b91;
+}
+
+/* Estilos para mensagens de erro */
+.text-danger {
+    color: #ff4040;
+    font-size: 14px; /* Aumentei um pouco o tamanho da fonte para melhor legibilidade */
+    margin-top: 2px;
+}
+
+/* Estilos para o link dos Termos de Uso */
+a {
+    color: #555;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para o aceite dos Termos de Uso */
+#aceite-termos {
+    vertical-align: middle;
+}
+
+/* Estilos para os botões */
+.button {
+    width: calc(33.33% - 10px);
+    height: auto;
+    font-size: 16px;
+    padding: 10px;
+    display: inline-block;
+    text-align: center;
+    background-color: #0077b6;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Estilos para o último botão da linha */
+.button:last-child {
+    margin-right: 0;
+}
+
+/* Estilos para as imagens nos botões */
+.button img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
