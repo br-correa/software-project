@@ -98,29 +98,6 @@ h2{
     font-size: 16px;
 }
 
-/* Estilos para telas pequenas (dispositivos móveis) */
-@media screen and (max-width: 768px) {
-    .navbar {
-        left: -250px; /* Manter o menu lateral oculto inicialmente em telas pequenas */
-    }
-
-    .menu-button {
-        margin-top: 10px;
-    }
-
-    .menu-options {
-        display: none;
-    }
-
-    .menu-opened .navbar {
-        left: 0;
-    }
-
-    .menu-opened .menu-options {
-        display: block;
-    }
-}
-
 /* Formulário de Cadastro */
 #formulario {
     padding: 20px;

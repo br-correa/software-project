@@ -341,3 +341,4 @@ function togglePasswordVisibility() {
 
 // Função para ativar exibir senha login
 togglePasswordVisibility();
+
