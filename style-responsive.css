@@ -1,25 +1,21 @@
 /* Estilos globais */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #fff;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f2f2f2;
     margin: 0;
     padding: 0;
-    font-size: 16px;
+    font-size: 14px;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Alinhe o conteúdo no topo */
-    min-height: 100vh; /* Garante que a página ocupe a altura inteira da tela */
-}
-
-h2{
-    font-size: 20px;
+    align-items: flex-start;
+    min-height: 100vh;
 }
 
 /*Formulário de Login */
 #login-form {
     max-width: 400px;
     width: 100%;
-    padding: 20px;
+    padding: 16px;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -27,9 +23,9 @@ h2{
 
 /* Cabeçalho */
 .header {
-    background-color: #0077b6;
+    background-color: #005b91;
     color: #fff;
-    padding: 10px;
+    padding: 20px;
     position: fixed;
     top: 0;
     width: 100%;
@@ -40,7 +36,7 @@ h2{
 
 .header-title {
     margin: 0;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: bold;
 }
 
@@ -52,58 +48,12 @@ h2{
     align-items: center;
 }
 
-/* Menu Lateral */
-.navbar {
-    background-color: #303030;
-    color: #fff;
-    padding: 10px;
-    width: 250px;
-    text-align: left;
-    overflow-y: auto;
-    position: fixed;
-    top: 50px;
-    left: 0; /* Alterado para 0 para mostrar o menu lateral em telas pequenas */
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    transition: left 0.3s ease;
-}
-
-.menu-button {
-    background-color: transparent;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: #fff;
-    margin-bottom: 20px;
-    display: block;
-}
-
-.menu-options {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    flex-grow: 1;
-}
-
-.menu-options li {
-    margin-bottom: 10px;
-}
-
-.menu-options a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    font-size: 16px;
-}
-
 /* Formulário de Cadastro */
 #formulario {
     padding: 20px;
-    border-radius: 5px; /* Adicionei bordas arredondadas para melhor aparência */
+    border-radius: 5px;
     flex-grow: 1;
-    background-color: transparent; /* Adicionei uma cor de fundo para separar o formulário do restante do conteúdo */
+    background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -120,7 +70,7 @@ select.form-control {
 
 /* Estilos para rótulos de blocos */
 .fieldset-label {
-    font-size: 20px; /* Aumentei o tamanho da fonte para títulos de blocos */
+    font-size: 16px;
     margin-top: 20px;
 }
 
@@ -133,35 +83,45 @@ label {
 }
 
 .highlight-link {
-    color: #00bcd4; /* Define a cor do link como azul */
-    text-decoration: underline; /* Adiciona sublinhado ao link */
-    cursor: pointer; /* Altera o cursor ao passar sobre o link */
+    color: #00bcd4;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 /* Estilos para botões */
-button{
-    background-color: #0077b6;
+.button-label {
+    background-color: #0095d6;
+    width: calc(33.33% - 10px);
+    height: auto;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 6px;
+    display: inline-block;
+    text-align: center;
     color: #fff;
     border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
     cursor: pointer;
+    border-radius: 5px;
     transition: background-color 0.3s ease;
+    margin-right: 10px;
+    margin-bottom: 10px;
     margin-top: 20px;
-    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     justify-content: center;
 }
 
-button:hover {
+.button-label:hover,
+.button:hover {
     background-color: #005b91;
+    color: #fff;    
 }
 
 /* Estilos para mensagens de erro */
 .text-danger {
     color: #ff4040;
-    font-size: 14px; /* Aumentei um pouco o tamanho da fonte para melhor legibilidade */
+    font-size: 14px;
     margin-top: 2px;
 }
 
@@ -182,23 +142,26 @@ a:hover {
 
 /* Estilos para os botões */
 .button {
+    background-color: transparent;
     width: calc(33.33% - 10px);
     height: auto;
-    font-size: 16px;
-    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 6px;
     display: inline-block;
     text-align: center;
-    background-color: #0077b6;
-    color: #fff;
+    color: transparent;
     border: none;
     cursor: pointer;
     border-radius: 5px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
     margin-right: 10px;
     margin-bottom: 10px;
+    margin-top: 20px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    justify-content: center;
 }
 
 /* Estilos para o último botão da linha */
@@ -212,3 +175,4 @@ a:hover {
     height: auto;
     vertical-align: middle;
 }
+

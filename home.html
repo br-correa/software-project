@@ -9,54 +9,44 @@
 </head>
 <body>
     <header class="header">
-        <h1 class="header-title">Limpa Já! Deu preguiça é só chamar</h1>
+        <h1 class="header-title">Limpa Já!</h1>
     </header>
 
     <div class="container">
-        <nav class="navbar">
-            <button id="toggleMenu" class="menu-button menu-opened">&#9776; Menu</button>
-            <ul id="menuOptions" class="menu-options">
-                <li><a href="#">Início</a></li>
-                <li><a href="#">Serviços</a></li>
-                <li><a href="#">Agendamento</a></li>
-                <li><a href="#">Contato</a></li>
-                <li><a href="#">Encerrar Sessão</a></li>
-            </ul>
-        </nav>
-                           
+                                   
         <div class="content">                  
-            <section class="schedule-section">
-                <h3 class="fieldset-label">Agende um Serviço</h3>
+            <section class="schedule-section"></br>
+                <h2 class="fieldset-label">Serviços</h2>
                 <div class="button-container">
-                    <button class="button" onclick="agendarServico('Limpar Casa')">
-                        <img src="limpar-casa.jpeg" alt="Ícone de Limpar Casa" /></br>
-                        <span>Limpar Casa</span>
-                    </button>
                     <button class="button" onclick="agendarServico('Lavar Roupas')">
-                        <img src="lavar-roupa.jpeg" alt="Ícone de Lavar Roupas" /></br>
-                        <span>Lavar Roupas</span>
+                        <img src="lavar-roupa.jpeg" alt="Lavar Roupas" /></br>
+                        <span>Lavar</span>
                     </button> 
                     <button class="button" onclick="agendarServico('Passar Roupas')">
-                        <img src="passar-roupa.jpeg" alt="Ícone de Passar Roupas" /></br>
-                        <span>Passar Roupas</span>
-                    </button>                                    
+                        <img src="passar-roupa.jpeg" alt="Passar Roupas" /></br>
+                        <span>Passar</span>
+                    </button> 
+                    <button class="button" onclick="agendarServico('Limpar Casa')">
+                        <img src="limpar-casa.jpeg" alt="Limpar Casa" /></br>
+                        <span>Limpar</span>
+                    </button>                                   
                 </div>
-            </section></br>            
+            </section>           
                        
             <section class="my-data-section">
-                <h3 class="fieldset-label">Meus Dados</h3>
+                <h2 class="fieldset-label">Section 2</h2>
                 <div class="button-container">
                     <button class="button" onclick="meusDados('Sessões na Plataforma')">
                         <img src="logo-limpa-ja.jpeg" alt="Ícone de Sessões" /></br>
-                        <span>Sessões na Plataforma</span>
+                        <span>Button 1</span>
                     </button>
                     <button class="button" onclick="meusDados('Dias de Cadastro')">
                         <img src="logo-limpa-ja.jpeg" alt="Ícone de Dias de Cadastro" /></br>
-                        <span>Dias de Cadastro</span>
+                        <span>Button 2</span>
                     </button>
                     <button class="button" onclick="meusDados('Serviços Contratados')">
                         <img src="logo-limpa-ja.jpeg" alt="Ícone de Serviços Contratados" /></br>
-                        <span>Serviços Contratados</span>
+                        <span>Button 3</span>
                     </button>
                 </div>
             </section>

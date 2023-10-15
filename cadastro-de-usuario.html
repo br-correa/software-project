@@ -6,11 +6,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="style-responsive.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <title>Cadastro de Usuário</title>
+    <title>Limpa Já! Cadastre seu usuário</title>
 </head>
 <body>
     <header class="header">
-        <h1 class="header-title">Cadastro de Usuário</h1>
+        <h1 class="header-title">Limpa Já!</h1>
     </header>
 
     <div class="container">
@@ -19,11 +19,13 @@
                        
             <!-- Container de perfil -->
             <div class="form-group"> 
+
                 <!-- Imagem do perfil (substitua "sua_imagem.jpg" pelo caminho da sua imagem) -->
-                <div class="profile-image" style="float: right; max-width: 80px; margin-left: 20px;">
+                <!-- <div class="profile-image" style="float: right; max-width: 80px; margin-left: 20px;">
                     <img src="logo-limpa-ja.jpeg" alt="Imagem do perfil" style="max-width: 100%; height: auto;">
-                </div>           
-                <h3 class="fieldset-label">Escolha o seu perfil</h3>
+                </div> -->    
+                  
+                <h2 class="fieldset-label">Escolha o seu perfil</h2>
                 <div class="form-check">
                     <input type="radio" id="cliente" name="perfil" value="cliente" class="form-check-input">
                     <label for="cliente" class="form-check-label">Cliente</label>
@@ -53,7 +55,7 @@
            
             <!-- Bloco de Dados Pessoais -->
             <div class="form-group">
-                <h3 class="fieldset-label">Dados pessoais</h3>
+                <h2 class="fieldset-label">Dados pessoais</h2>
                 <div class="form-row">
                     <div class="col-md-3 mb-2">
                         <label for="nome">Nome</label>
@@ -90,7 +92,7 @@
 
             <!-- Bloco de Dados de Endereço -->
             <div class="form-group">
-                <h3 class="fieldset-label">Dados de endereço</h3>
+                <h2 class="fieldset-label">Dados de endereço</h2>
                 <div class="form-row">
                     <div class="col-md-3 mb-2">
                         <label for="cep">CEP</label>
@@ -134,7 +136,7 @@
 
             <!-- Bloco de Registro de Usuário -->
             <div class="form-group">
-                <h3 class="fieldset-label">Registre a sua conta</h3>
+                <h2 class="fieldset-label">Registre a sua conta</h2>
                 <div class="form-row">
                     <div class="col-md-6 mb-2">
                         <label for="email">E-mail</label>
@@ -166,8 +168,8 @@
 
                 <!-- Botão Enviar (habilitado apenas quando aceitar os termos) -->
                 <div class="text-center">
-                    <button type="button" class="button" id="btn-voltar" style="width: 90px; height: 45px;">Voltar </button>
-                    <button type="submit" class="button" id="btn-enviar" disabled style="width: 90px; height: 45px;">Enviar</button>
+                    <button type="button" class="button-label" id="btn-voltar" style="width: 90px; height: 45px;">Voltar </button>
+                    <button type="submit" class="button-label" id="btn-enviar" disabled style="width: 90px; height: 45px;">Enviar</button>
                 </div>
             </div>
         </form>

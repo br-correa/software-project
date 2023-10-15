@@ -5,19 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="style-responsive.css">
-    <title>Limpa Já! Deu preguiça é só chamar - Login</title>
+    <title>Limpa Já! Acesse sua conta</title>
 </head>
 <body>
     <header class="header">
-        <h1 class="header-title">Seja Bem Vindo ao Limpa Já!</h1>
+        <h1 class="header-title">Limpa Já!</h1>
     </header>
     
     <div class="container">      
-        <div class="align-content-center" style="text-align: center;">
-            <img src="logo-limpa-ja.jpeg" alt="Imagem do perfil" style="width: 80px; height: 80px; display: inline-block;">
-        </div>               
-        <form id="login-form" class="content">            
-            <h2 class="text-center">Acesse sua conta</h2></br>            
+                
+        <form id="login-form" class="content">           
+            <h2 class="fieldset-label text-center">Acesse sua conta</h2></br>            
                 <div class="form-group">
                     <label for="email">E-mail:</label>
                     <input type="email" class="form-control" id="email" name="email" required>
@@ -35,11 +33,11 @@
 
                 </div >
                 <div class="form-group text-center">
-                    <button type="submit" class="button" id="btn-entrar">Entrar</button>
+                    <button type="submit" onclick="validateAndRedirect()" class="button-label" id="btn-entrar">Entrar</button>
                 </div>
             
                 <div class="password-reset text-center">
-                    <p>Esqueceu sua senha? <a href="#" class="highlight-link">Clique aqui</a></p>
+                    <p>Esqueceu sua senha? <a href="home.html" class="highlight-link">Clique aqui</a></p>
                 </div>
                 
                 <div class="create-account text-center">
