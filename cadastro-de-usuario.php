@@ -2,6 +2,10 @@
 // Conexão com o banco de dados SQLite
 $db = new SQLite3('db-software-project.db'); // Substitua pelo caminho correto
 
+if (!$db) {
+    die("Erro ao conectar ao banco de dados.");
+}
+
 // Verifica se o formulário foi submetido
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Recupera os valores do formulário
