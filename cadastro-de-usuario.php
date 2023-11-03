@@ -1,6 +1,6 @@
 <?php
 // Conexão com o banco de dados MySQL
-include("conecta-db.php");
+include("criar-conexao-db.php");
 
 // Verifica se o formulário foi submetido
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
