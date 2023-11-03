@@ -1,14 +1,18 @@
 <?php
-// Conexão com o banco de dados SQLite
-$db = new SQLite3('db-software-project.db'); // Substitua pelo caminho correto
+// Configurações do banco de dados MySQL
+$host = "localhost"; // Host do servidor MySQL
+$username = "root"; // Nome de usuário do MySQL
+$password = null; // Senha do MySQL
+$database = "db_limpa_ja"; // Nome do banco de dados MySQL
 
-<<<<<<< Updated upstream
-if (!$db) {
-    die("Erro ao conectar ao banco de dados.");
+// Conexão com o banco de dados MySQL
+$mysqli = new mysqli($host, $username, $password, $database);
+
+// Verifica se houve erro na conexão
+if ($mysqli->connect_error) {
+    die("Erro ao conectar ao banco de dados: " . $mysqli->connect_error);
 }
 
-=======
->>>>>>> Stashed changes
 // Verifica se o formulário foi submetido
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Recupera os valores do formulário
@@ -33,35 +37,80 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT); // Hash da senha
 
     // Insere os dados na tabela de usuários
-    $stmt = $db->prepare("INSERT INTO 'cadastro-de-usuarios' (perfil, lavar_roupa, passar_roupa, limpar_casa, nome, sobrenome, apelido, data_nascimento, cpf, telefone, celular, cep, rua, numero, bairro, cidade, estado, email, senha) 
-                         VALUES (:perfil, :lavar_roupa, :passar_roupa, :limpar_casa, :nome, :sobrenome, :apelido, :data_nascimento, :cpf, :telefone, :celular, :cep, :rua, :numero, :bairro, :cidade, :estado, :email, :senha)");
+    $stmt = $mysqli->prepare("INSERT INTO
+                                'tb_cadastro_de_usuarios' (
+                                perfil,
+                                lavar_roupa, 
+                                passar_roupa, 
+                                limpar_casa, 
+                                nome, 
+                                sobrenome, 
+                                apelido, 
+                                data_nascimento, 
+                                cpf, 
+                                telefone, 
+                                celular, 
+                                cep, 
+                                rua, 
+                                numero, 
+                                bairro, 
+                                cidade, 
+                                estado, 
+                                email, 
+                                senha) 
+                            VALUES (
+                                :perfil,
+                                :lavar_roupa, 
+                                :passar_roupa, 
+                                :limpar_casa, 
+                                :nome, 
+                                :sobrenome, 
+                                :apelido, 
+                                :data_nascimento, 
+                                :cpf, 
+                                :telefone, 
+                                :celular, 
+                                :cep, 
+                                :rua, 
+                                :numero, 
+                                :bairro, 
+                                :cidade, 
+                                :estado, 
+                                :email, 
+                                :senha)"
+                            );
     
-    $stmt->bindValue(':perfil', $perfil, SQLITE3_TEXT);
-    $stmt->bindValue(':lavar_roupa', $lavar_roupa, SQLITE3_INTEGER);
-    $stmt->bindValue(':passar_roupa', $passar_roupa, SQLITE3_INTEGER);
-    $stmt->bindValue(':limpar_casa', $limpar_casa, SQLITE3_INTEGER);
-    $stmt->bindValue(':nome', $nome, SQLITE3_TEXT);
-    $stmt->bindValue(':sobrenome', $sobrenome, SQLITE3_TEXT);
-    $stmt->bindValue(':apelido', $apelido, SQLITE3_TEXT);
-    $stmt->bindValue(':data_nascimento', $data_nascimento, SQLITE3_TEXT);
-    $stmt->bindValue(':cpf', $cpf, SQLITE3_TEXT);
-    $stmt->bindValue(':telefone', $telefone, SQLITE3_TEXT);
-    $stmt->bindValue(':celular', $celular, SQLITE3_TEXT);
-    $stmt->bindValue(':cep', $cep, SQLITE3_TEXT);
-    $stmt->bindValue(':rua', $rua, SQLITE3_TEXT);
-    $stmt->bindValue(':numero', $numero, SQLITE3_TEXT);
-    $stmt->bindValue(':bairro', $bairro, SQLITE3_TEXT);
-    $stmt->bindValue(':cidade', $cidade, SQLITE3_TEXT);
-    $stmt->bindValue(':estado', $estado, SQLITE3_TEXT);
-    $stmt->bindValue(':email', $email, SQLITE3_TEXT);
-    $stmt->bindValue(':senha', $senha, SQLITE3_TEXT);
-    
-    $result = $stmt->execute();
+    $stmt->bind_param("iiisssssssssssssss", 
+                                $perfil, 
+                                $lavar_roupa,
+                                $passar_roupa,
+                                $limpar_casa,
+                                $nome, 
+                                $sobrenome, 
+                                $apelido, 
+                                $data_nascimento, 
+                                $cpf, $telefone, 
+                                $celular, 
+                                $cep, 
+                                $rua, 
+                                $numero, 
+                                $bairro, 
+                                $cidade, 
+                                $estado, 
+                                $email, 
+                                $senha
+                    );
 
-    if ($result) {
+    if ($stmt->execute()) {
         echo "Registro inserido com sucesso!";
     } else {
-        echo "Erro ao inserir o registro.";
+        echo "Erro ao inserir o registro: " . $stmt->error;
     }
+
+    // Fecha a declaração
+    $stmt->close();
 }
+
+// Fecha a conexão
+$mysqli->close();
 ?>
