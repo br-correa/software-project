@@ -214,7 +214,7 @@ function configurarComportamentoPerfil() {
 
     // Verifique o estado inicial ao carregar a página
     opcoesServico.css("display", prestadorCheckbox.prop("checked") ? "block" : "none");
-
+    
     // Limpar opções de serviço ao selecionar "Cliente"
     $("input[value='cliente']").change(function () {
         if (this.checked) {

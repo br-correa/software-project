@@ -7,23 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Recupera os valores do formulário
     $perfil = $_POST['perfil'];
 
-    $lavar_roupa = 0;
-    $passar_roupa = 0;
-    $limpar_casa = 0;
-
-    if (isset($_POST['servico'])) {
-        if (in_array('lavar-roupa', $_POST['servico'])) {
-            $lavar_roupa = 1;
-        }
-        
-        if (in_array('passar-roupa', $_POST['servico'])) {
-            $passar_roupa = 1;
-        }
-        
-        if (in_array('limpar-casa', $_POST['servico'])) {
-            $limpar_casa = 1;
-        }
-    }
+    $lavar_roupa = isset($_POST['lavar-roupa']) ? 1 : 0;
+    $passar_roupa = isset($_POST['passar-roupa']) ? 1 : 0;
+    $limpar_casa = isset($_POST['limpar-casa']) ? 1 : 0;
 
     $nome = $_POST['nome'];
     $sobrenome = $_POST['sobrenome'];
