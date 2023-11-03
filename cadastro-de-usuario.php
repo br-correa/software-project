@@ -8,13 +8,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $perfil = $_POST['perfil'];
 
     // Padrão para o serviço 'lavar-roupa'
-    $lavar_roupa = isset($_POST['servico']) && in_array('lavar-roupa', $_POST['servico']) ? 1 : 0;
+    if (isset($_POST['servico']) && is_array($_POST['servico']) && in_array('lavar-roupa', $_POST['servico'])) {
+        $lavar_roupa = 1;
+    } else {
+        $lavar_roupa = 0;
+    }
 
     // Padrão para o serviço 'passar-roupa'
-    $passar_roupa = isset($_POST['servico']) && in_array('passar-roupa', $_POST['servico']) ? 1 : 0;
+    if (isset($_POST['servico']) && is_array($_POST['servico']) && in_array('passar-roupa', $_POST['servico'])) {
+        $passar_roupa = 1;
+    } else {
+        $passar_roupa = 0;
+    }
 
     // Padrão para o serviço 'limpar-casa'
-    $limpar_casa = isset($_POST['servico']) && in_array('limpar-casa', $_POST['servico']) ? 1 : 0;
+    if (isset($_POST['servico']) && is_array($_POST['servico']) && in_array('limpar-casa', $_POST['servico'])) {
+        $limpar_casa = 1;
+    } else {
+        $limpar_casa = 0;
+    }
 
     $nome = $_POST['nome'];
     $sobrenome = $_POST['sobrenome'];
