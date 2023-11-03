@@ -2,7 +2,7 @@
 // Configurações do banco de dados MySQL
 $host = "localhost"; // Host do servidor MySQL
 $username = "root"; // Nome de usuário do MySQL
-$password = ""; // Senha do MySQL
+$password = ""; // Deixe a senha vazia
 $database = "db_limpa_ja"; // Nome do banco de dados MySQL
 
 // Conexão com o banco de dados MySQL
@@ -17,9 +17,9 @@ if ($mysqli->connect_error) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Recupera os valores do formulário
     $perfil = $_POST['perfil'];
-    $lavar_roupa = isset($_POST['lavar_roupa']) ? 1 : 0;
-    $passar_roupa = isset($_POST['passar_roupa']) ? 1 : 0;
-    $limpar_casa = isset($_POST['limpar_casa']) ? 1 : 0;
+    $lavar_roupa = isset($_POST['servico']) && in_array('lavar-roupa', $_POST['servico']) ? 1 : 0;
+    $passar_roupa = isset($_POST['servico']) && in_array('passar-roupa', $_POST['servico']) ? 1 : 0;
+    $limpar_casa = isset($_POST['servico']) && in_array('limpar-casa', $_POST['servico']) ? 1 : 0;
     $nome = $_POST['nome'];
     $sobrenome = $_POST['sobrenome'];
     $apelido = $_POST['apelido'];
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Insere os dados na tabela de usuários
     $stmt = $mysqli->prepare("INSERT INTO tb_cadastro_de_usuarios (perfil, lavar_roupa, passar_roupa, limpar_casa, nome, sobrenome, apelido, data_nascimento, cpf, telefone, celular, cep, rua, numero, bairro, cidade, estado, email, senha) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-    $stmt->bind_param("iiisssssssssssssss", $perfil, $lavar_roupa, $passar_roupa, $limpar_casa, $nome, $sobrenome, $apelido, $data_nascimento, $cpf, $telefone, $celular, $cep, $rua, $numero, $bairro, $cidade, $estado, $email);
+    $stmt->bind_param("siiiiisssssssssssss", $perfil, $lavar_roupa, $passar_roupa, $limpar_casa, $nome, $sobrenome, $apelido, $data_nascimento, $cpf, $telefone, $celular, $cep, $rua, $numero, $bairro, $cidade, $estado, $email, $senha);
 
     if ($stmt->execute()) {
         echo "Registro inserido com sucesso!";
