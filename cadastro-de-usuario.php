@@ -28,6 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $limpar_casa = 0;
     }
 
+    // Adicione o código de depuração para verificar $_POST['servico']
+    var_dump($_POST['servico']);
+
     $nome = $_POST['nome'];
     $sobrenome = $_POST['sobrenome'];
     $apelido = $_POST['apelido'];
