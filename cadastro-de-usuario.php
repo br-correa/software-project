@@ -8,25 +8,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $perfil = $_POST['perfil'];
 
     // Padrão para o serviço 'lavar-roupa'
-    if (isset($_POST['servico']) && is_array($_POST['servico']) && in_array('lavar-roupa', $_POST['servico'])) {
-        $lavar_roupa = 1;
-    } else {
-        $lavar_roupa = 0;
-    }
+    $lavar_roupa = (isset($_POST['servico']) && in_array('lavar-roupa', $_POST['servico'])) ? 1 : 0;
 
     // Padrão para o serviço 'passar-roupa'
-    if (isset($_POST['servico']) && is_array($_POST['servico']) && in_array('passar-roupa', $_POST['servico'])) {
-        $passar_roupa = 1;
-    } else {
-        $passar_roupa = 0;
-    }
+    $passar_roupa = (isset($_POST['servico']) && in_array('passar-roupa', $_POST['servico'])) ? 1 : 0;
 
     // Padrão para o serviço 'limpar-casa'
-    if (isset($_POST['servico']) && is_array($_POST['servico']) && in_array('limpar-casa', $_POST['servico'])) {
-        $limpar_casa = 1;
-    } else {
-        $limpar_casa = 0;
-    }
+    $limpar_casa = (isset($_POST['servico']) && in_array('limpar-casa', $_POST['servico'])) ? 1 : 0;
 
     $nome = $_POST['nome'];
     $sobrenome = $_POST['sobrenome'];
@@ -46,13 +34,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Montar a consulta SQL com declaração preparada
     $query = "INSERT INTO tb_cadastro_de_usuarios (perfil, lavar_roupa, passar_roupa, limpar_casa, nome, sobrenome, apelido, data_nascimento, cpf, telefone, celular, cep, rua, numero, bairro, cidade, estado, email, senha) 
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = $conn->prepare($query);
 
     // Verifica se a preparação da declaração foi bem-sucedida
     if ($stmt) {
-        $stmt->bind_param("siisssssssssssssss", $perfil, $lavar_roupa, $passar_roupa, $limpar_casa, $nome, $sobrenome, $apelido, $data_nascimento, $cpf, $telefone, $celular, $cep, $rua, $numero, $bairro, $cidade, $estado, $email, $senha);
+        $stmt->bind_param("siiisssssssssssssss", $perfil, $lavar_roupa, $passar_roupa, $limpar_casa, $nome, $sobrenome, $apelido, $data_nascimento, $cpf, $telefone, $celular, $cep, $rua, $numero, $bairro, $cidade, $estado, $email, $senha);
 
         // Executar a consulta
         if ($stmt->execute()) {
