@@ -1,5 +1,5 @@
 <?php
-// Conexão com o banco de dados MySQL
+// Conexão com o banco de dados
 include("criar-conexao-db.php");
 
 // Verifica se o formulário foi submetido
@@ -44,21 +44,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT); // Hash da senha
 
-    // Insere os dados na tabela de usuários
-    $stmt = $conn->prepare("INSERT INTO tb_cadastro_de_usuarios (perfil, lavar_roupa, passar_roupa, limpar_casa, nome, sobrenome, apelido, data_nascimento, cpf, telefone, celular, cep, rua, numero, bairro, cidade, estado, email, senha) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    // Montar a consulta SQL com declaração preparada
+    $query = "INSERT INTO tb_cadastro_de_usuarios (perfil, lavar_roupa, passar_roupa, limpar_casa, nome, sobrenome, apelido, data_nascimento, cpf, telefone, celular, cep, rua, numero, bairro, cidade, estado, email, senha) 
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    $stmt->bind_param("siisssssssssssssss", $perfil, $lavar_roupa, $passar_roupa, $limpar_casa, $nome, $sobrenome, $apelido, $data_nascimento, $cpf, $telefone, $celular, $cep, $rua, $numero, $bairro, $cidade, $estado, $email, $senha);
+    $stmt = $conn->prepare($query);
 
-    if ($stmt->execute()) {
-        echo "Registro inserido com sucesso!";
+    // Verifica se a preparação da declaração foi bem-sucedida
+    if ($stmt) {
+        $stmt->bind_param("siisssssssssssssss", $perfil, $lavar_roupa, $passar_roupa, $limpar_casa, $nome, $sobrenome, $apelido, $data_nascimento, $cpf, $telefone, $celular, $cep, $rua, $numero, $bairro, $cidade, $estado, $email, $senha);
+
+        // Executar a consulta
+        if ($stmt->execute()) {
+            echo "Registro inserido com sucesso!";
+        } else {
+            echo "Erro ao inserir o registro: " . $stmt->error;
+        }
+
+        // Feche a declaração
+        $stmt->close();
     } else {
-        echo "Erro ao inserir o registro: " . $stmt->error;
+        echo "Erro na preparação da consulta: " . $conn->error;
     }
 
-    // Fecha a declaração
-    $stmt->close();
+    // Feche a conexão
+    $conn->close();
 }
-
-// Fecha a conexão
-$conn->close();
 ?>
