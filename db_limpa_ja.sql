@@ -1,1 +1,0 @@
-select * from tb_cadastro_de_usuarios

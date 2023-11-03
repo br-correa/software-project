@@ -1,12 +1,6 @@
 {
     "sqltools.connections": [
         {
-            "previewLimit": 50,
-            "driver": "SQLite",
-            "name": "db-software-project",
-            "database": "${workspaceFolder:software-project}/db-software-project.db"
-        },
-        {
             "mysqlOptions": {
                 "authProtocol": "default",
                 "enableSsl": "Disabled"

@@ -118,6 +118,14 @@ label {
     color: #fff;    
 }
 
+/* Estilo para botão desabilitado */
+button:disabled {
+    background-color: #747272; /* Define uma cor de fundo mais clara para indicar desativado */
+    opacity: 0.7; /* Reduz a opacidade para tornar o botão mais transparente */
+    cursor: not-allowed; /* Altera o cursor para "não permitido" */
+    /* Outros estilos desejados, como bordas, margens, etc. */
+  }
+  
 /* Estilos para mensagens de erro */
 .text-danger {
     color: #ff4040;

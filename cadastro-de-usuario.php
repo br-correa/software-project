@@ -2,7 +2,7 @@
 // Configurações do banco de dados MySQL
 $host = "localhost"; // Host do servidor MySQL
 $username = "root"; // Nome de usuário do MySQL
-$password = null; // Senha do MySQL
+$password = ""; // Senha do MySQL
 $database = "db_limpa_ja"; // Nome do banco de dados MySQL
 
 // Conexão com o banco de dados MySQL
