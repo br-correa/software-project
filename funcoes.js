@@ -6,24 +6,24 @@ function redirecionarParaPaginaDeLogin() {
 // Adicione um ouvinte de evento ao botão "Voltar"
 document.getElementById("btn-voltar").addEventListener("click", redirecionarParaPaginaDeLogin);
 
+// Rotina de login
 function validateAndRedirect() {
     // Obtenha os valores do campo de usuário e senha
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
+    var email = document.getElementById("email").value;
+    var senha = document.getElementById("senha").value;
 
-    // Faça uma requisição AJAX para verificar a autenticação no servidor (assumindo que você está usando um servidor para autenticação)
-    // Aqui está um exemplo simples, você deve ajustá-lo para se adequar ao seu sistema de autenticação.
+    // Faça uma requisição AJAX para o arquivo PHP de autenticação
     $.ajax({
         type: "POST",
-        url: "sua_api_de_autenticacao.php", // Substitua pela URL da sua API de autenticação
+        url: "login.php", // Substitua pelo nome correto do seu arquivo PHP de autenticação
         data: {
-            username: username,
-            password: password
+            email: email,
+            senha: senha
         },
         success: function (response) {
-            // Se a autenticação for bem-sucedida, redirecione para a página home.html
+            // Se a autenticação for bem-sucedida, redirecione para a página desejada (por exemplo, "dashboard.php")
             if (response === "autenticado") {
-                window.location.href = "home.html";
+                window.location.href = "home.html"; // Substitua pelo nome da página que deseja redirecionar após o login
             } else {
                 // Caso contrário, exiba uma mensagem de erro
                 alert("Nome de usuário ou senha incorretos. Tente novamente.");
