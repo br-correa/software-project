@@ -1,17 +1,6 @@
 <?php
-// Configurações do banco de dados MySQL
-$host = "localhost"; // Host do servidor MySQL
-$username = "root"; // Nome de usuário do MySQL
-$password = ""; // Deixe a senha vazia
-$database = "db_limpa_ja"; // Nome do banco de dados MySQL
-
 // Conexão com o banco de dados MySQL
-$mysqli = new mysqli($host, $username, $password, $database);
-
-// Verifica se houve erro na conexão
-if ($mysqli->connect_error) {
-    die("Erro ao conectar ao banco de dados: " . $mysqli->connect_error);
-}
+include("conecta-db.php");
 
 // Verifica se o formulário foi submetido
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
