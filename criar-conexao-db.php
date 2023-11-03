@@ -14,10 +14,6 @@ if ($conn->connect_error) {
 
 echo "Conexão bem-sucedida!";
 
-// Fechar a conexão quando terminar
-$conn->close();
-?>
-
 
 
 
