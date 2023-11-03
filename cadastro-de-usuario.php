@@ -7,29 +7,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Recupera os valores do formulário
     $perfil = $_POST['perfil'];
 
-    // Padrão para o serviço 'lavar-roupa'
-    if (isset($_POST['servico']) && is_array($_POST['servico']) && in_array('lavar-roupa', $_POST['servico'])) {
-        $lavar_roupa = 1;
-    } else {
-        $lavar_roupa = 0;
-    }
+    $lavar_roupa = 0;
+    $passar_roupa = 0;
+    $limpar_casa = 0;
 
-    // Padrão para o serviço 'passar-roupa'
-    if (isset($_POST['servico']) && is_array($_POST['servico']) && in_array('passar-roupa', $_POST['servico'])) {
-        $passar_roupa = 1;
-    } else {
-        $passar_roupa = 0;
+    if (isset($_POST['servico'])) {
+        if (in_array('lavar-roupa', $_POST['servico'])) {
+            $lavar_roupa = 1;
+        }
+        
+        if (in_array('passar-roupa', $_POST['servico'])) {
+            $passar_roupa = 1;
+        }
+        
+        if (in_array('limpar-casa', $_POST['servico'])) {
+            $limpar_casa = 1;
+        }
     }
-
-    // Padrão para o serviço 'limpar-casa'
-    if (isset($_POST['servico']) && is_array($_POST['servico']) && in_array('limpar-casa', $_POST['servico'])) {
-        $limpar_casa = 1;
-    } else {
-        $limpar_casa = 0;
-    }
-
-    // Adicione o código de depuração para verificar $_POST['servico']
-    var_dump($_POST['servico']);
 
     $nome = $_POST['nome'];
     $sobrenome = $_POST['sobrenome'];
