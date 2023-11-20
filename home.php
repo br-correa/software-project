@@ -1,10 +1,11 @@
 <?php
+
 session_start();
 
-// Destruir a sessão
-session_destroy();
+// Verifica se o e-mail está presente na sessão
+$email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
 
-// Redirecionar para a página de login ou outra página desejada
-header("Location: home.html"); // Substitua "login.php" pelo nome da sua página de login
-exit();
+// Certifique-se de que a sessão seja fechada
+session_write_close();
+
 ?>
