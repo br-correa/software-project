@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Adicione um atraso de 5 segundos usando JavaScript
                 echo '<script>
                 setTimeout(function() {
-                    window.location.href = "home.html?email=' . urlencode($email) . '";
+                    window.location.href = "home.php?email=' . urlencode($email) . '";
                 }, 5000);
                 </script>';
                 exit();
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo '<p>Credenciais incorretas. Redirecionando para login.html...</p>';
             echo '<script>
                     setTimeout(function() {
-                        window.location.href = "login.php";
+                        window.location.href = "login.html";
                     }, 5000); // 5000 milissegundos = 5 segundos
                   </script>';
             exit();
