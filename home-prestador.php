@@ -34,16 +34,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_servico']))
 $sqlPendentes = "SELECT * FROM tb_agendar_servico WHERE agendamento = 'Não confirmado'";
 $resultPendentes = $conn->query($sqlPendentes);
 
-// Consulta SQL para obter os serviços confirmados
-$sqlConfirmados = "SELECT * FROM tb_agendar_servico WHERE agendamento = 'Confirmado'";
-$resultConfirmados = $conn->query($sqlConfirmados);
-
-// Armazena os resultados em arrays para exibição posterior
+// Armazena os resultados em um array para exibição posterior
 $agendamentosPendentes = [];
 while ($rowPendente = $resultPendentes->fetch_assoc()) {
     $agendamentosPendentes[] = $rowPendente;
 }
 
+// Consulta SQL para obter os serviços confirmados
+$sqlConfirmados = "SELECT * FROM tb_agendar_servico WHERE agendamento = 'Confirmado'";
+$resultConfirmados = $conn->query($sqlConfirmados);
+
+// Armazena os resultados em um array para exibição posterior
 $agendamentosConfirmados = [];
 while ($rowConfirmado = $resultConfirmados->fetch_assoc()) {
     $agendamentosConfirmados[] = $rowConfirmado;
@@ -112,17 +113,35 @@ $conn->close();
             </section>
 
             <section class="schedule-section">
-                <h2 class="fieldset-label">Serviços Confirmados</h2>
+                <h2 class="fieldset-label">Confirmar Serviços Agendados</h2>
 
                 <div class="button-container text-center">
                     <table class="agendamentos-table">
-                        <!-- Cabeçalho da tabela aqui... -->
+                        <thead>
+                            <tr>
+                                <th>Tipo de Serviço</th>
+                                <th>Data</th>
+                                <th>Horário</th>
+                                <th>Mensagem Adicional</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
                         <tbody>
-                            <?php foreach ($agendamentosConfirmados as $agendamento): ?>
-                                <!-- Linhas para serviços confirmados aqui... -->
+                            <?php foreach ($agendamentos as $agendamento): ?>
+                                <tr>
+                                    <td><?= $agendamento['tipo_servico'] ?></td>
+                                    <td><?= $agendamento['data_servico'] ?></td>
+                                    <td><?= $agendamento['horario_servico'] ?></td>
+                                    <td><?= isset($agendamento['mensagem']) ? $agendamento['mensagem'] : '' ?></td>
+                                    <td><?= $agendamento['agendamento'] ?></td>                                    
+                                </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                    
+                    <?php if (isset($confirmarErro)): ?>
+                        <p style="color: red;"><?= $confirmarErro ?></p>
+                    <?php endif; ?>
                 </div>
             </section>
 
