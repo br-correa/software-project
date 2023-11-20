@@ -42,10 +42,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // Após o login bem-sucedido
                 $_SESSION['email'] = $email;
+
+                // Certifique-se de que a sessão seja salva antes de redirecionar
+                session_write_close();
                 
                 echo '<script>
                         setTimeout(function() {
-                            window.location.href = "home.html?email=' . $email . '";
+                            window.location.href = "home.html";
                         }, 5000);
                     </script>';
                 exit();

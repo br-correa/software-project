@@ -13,8 +13,8 @@ function redirecionarParaAgendarServico(tipoServico) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    var urlParams = new URLSearchParams(window.location.search);
-    var email = urlParams.get('email');
+    // Recupere o email da sessão (você pode precisar ajustar se estiver usando algo diferente de PHP no servidor)
+    var email = "<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>";
 
     if (email) {
         document.getElementById('user-email').innerText = email;
