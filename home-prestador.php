@@ -73,7 +73,7 @@ $conn->close();
                                 
             
             <section class="schedule-section">
-                <h2 class="fieldset-label">Confirmar Serviços Agendados</h2>
+                <h2 class="fieldset-label">Serviços Agendados Não Confirmados</h2>
 
                 <div class="button-container text-center">
                 <?php if (!empty($agendamentosPendentes)): ?>
@@ -90,7 +90,7 @@ $conn->close();
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($agendamentos as $agendamento): ?>
+                            <?php foreach ($agendamentosPendentes as $agendamento): ?>
                                 <tr>
                                     <td><?= $agendamento['tipo_servico'] ?></td>
                                     <td><?= $agendamento['data_servico'] ?></td>
@@ -132,7 +132,7 @@ $conn->close();
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($agendamentos as $agendamento): ?>
+                            <?php foreach ($agendamentosConfirmados as $agendamento): ?>
                                 <tr>
                                     <td><?= $agendamento['tipo_servico'] ?></td>
                                     <td><?= $agendamento['data_servico'] ?></td>
