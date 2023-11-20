@@ -1,3 +1,16 @@
+<?php
+// Inicie a sessão para acessar as variáveis de sessão
+session_start();
+
+// Verifique se a sessão contém o email do usuário
+if (isset($_SESSION['email'])) {
+    $usuarioLogado = $_SESSION['email'];
+} else {
+    // Redireciona para a página de login se o usuário não estiver autenticado
+    header("Location: login.html");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -14,24 +27,34 @@
 
     <div class="container">
                                    
-        <div class="content">                  
+        <div class="content">  
+            
+            <!-- Adiciona a label para mostrar o usuário autenticado -->
+            <div id="user-info">
+                <label id="user-label">Usuário: </label>
+                <span id="user-name"><?php echo $usuarioLogado; ?></span>
+                <!-- Adiciona o botão de logoff -->
+                <a href="logout.php" class="btn btn-danger">Logoff</a>
+            </div>
+            
+            
             <section class="schedule-section"></br>
                 <h2 class="fieldset-label">Serviços</h2>
                 <div class="button-container">
-                    <button class="button" onclick="agendarServico('Lavar Roupas')">
+                    <button class="button" onclick="redirecionarParaAgendarServico('Lavar Roupas')">
                         <img src="lavar-roupa.jpeg" alt="Lavar Roupas" /></br>
                         <span>Lavar</span>
                     </button> 
-                    <button class="button" onclick="agendarServico('Passar Roupas')">
+                    <button class="button" onclick="redirecionarParaAgendarServico('Passar Roupas')">
                         <img src="passar-roupa.jpeg" alt="Passar Roupas" /></br>
                         <span>Passar</span>
                     </button> 
-                    <button class="button" onclick="agendarServico('Limpar Casa')">
+                    <button class="button" onclick="redirecionarParaAgendarServico('Limpar Casa')">
                         <img src="limpar-casa.jpeg" alt="Limpar Casa" /></br>
                         <span>Limpar</span>
                     </button>                                   
                 </div>
-            </section>           
+            </section>  
                        
             <section class="my-data-section">
                 <h2 class="fieldset-label">Section 2</h2>
