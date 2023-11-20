@@ -59,46 +59,49 @@ $conn->close();
 
     <div class="container">                               
         <div class="content">  
-            <h2 class="fieldset-label text-center">Seja bem-vindo <?php echo $_SESSION['nome']; ?>!</h2>                     
+            <h2 class="fieldset-label text-center">Seja bem-vindo <?php echo $_SESSION['nome']; ?>!</h2>
+                                
+            
             <section class="schedule-section">
                 <h2 class="fieldset-label">Confirmar Serviços Agendados</h2>
 
                 <div class="button-container text-center">
-                    <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                        <table class="agendamentos-table">
-                            <thead>
+                    <table class="agendamentos-table">
+                        <thead>
+                            <tr>
+                                <th>Tipo de Serviço</th>
+                                <th>Data</th>
+                                <th>Horário</th>
+                                <th>Mensagem Adicional</th>
+                                <th>Status</th>
+                                <th>Ações</th> <!-- Nova coluna para o botão -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($agendamentos as $agendamento): ?>
                                 <tr>
-                                    <th>Tipo de Serviço</th>
-                                    <th>Data</th>
-                                    <th>Horário</th>
-                                    <th>Mensagem Adicional</th>
-                                    <th>Status</th>
-                                    <th>Ações</th> <!-- Nova coluna para o botão -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($agendamentos as $agendamento): ?>
-                                    <tr>
-                                        <td><?= $agendamento['tipo_servico'] ?></td>
-                                        <td><?= $agendamento['data_servico'] ?></td>
-                                        <td><?= $agendamento['horario_servico'] ?></td>
-                                        <td><?= isset($agendamento['mensagem']) ? $agendamento['mensagem'] : '' ?></td>
-                                        <td><?= $agendamento['agendamento'] ?></td>
-                                        <td>
-                                            <input type="hidden" name="id_servico" value="<?= $agendamento['id_servico'] ?>">
+                                    <td><?= $agendamento['tipo_servico'] ?></td>
+                                    <td><?= $agendamento['data_servico'] ?></td>
+                                    <td><?= $agendamento['horario_servico'] ?></td>
+                                    <td><?= isset($agendamento['mensagem']) ? $agendamento['mensagem'] : '' ?></td>
+                                    <td><?= $agendamento['agendamento'] ?></td>
+                                    <td>
+                                        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                            <input type="hidden" name="id_servico" value="<?= $agendamento['servico_id'] ?>">
                                             <button type="submit" class="btn btn-success" name="confirmar_servico">Confirmar</button>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </form>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+
                     <?php if (isset($confirmarErro)): ?>
                         <p style="color: red;"><?= $confirmarErro ?></p>
                     <?php endif; ?>
                 </div>
-
             </section>
+
             <div id="user-info" class="text-center"></br>                                   
                 <a href="logout.php" class="btn btn-danger">Sair</a>
             </div>
