@@ -31,13 +31,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_servico']))
 }
 
 // Consulta SQL para obter os serviços pendentes de confirmação 
-$sql = "SELECT * FROM tb_agendar_servico WHERE agendamento = 'Não confirmado'";
-$result = $conn->query($sql);
+$sqlPendentes = "SELECT * FROM tb_agendar_servico WHERE agendamento = 'Não confirmado'";
+$resultPendentes = $conn->query($sqlPendentes);
 
-// Armazena os resultados em um array para exibição posterior
-$agendamentos = [];
-while ($row = $result->fetch_assoc()) {
-    $agendamentos[] = $row;
+// Consulta SQL para obter os serviços confirmados
+$sqlConfirmados = "SELECT * FROM tb_agendar_servico WHERE agendamento = 'Confirmado'";
+$resultConfirmados = $conn->query($sqlConfirmados);
+
+// Armazena os resultados em arrays para exibição posterior
+$agendamentosPendentes = [];
+while ($rowPendente = $resultPendentes->fetch_assoc()) {
+    $agendamentosPendentes[] = $rowPendente;
+}
+
+$agendamentosConfirmados = [];
+while ($rowConfirmado = $resultConfirmados->fetch_assoc()) {
+    $agendamentosConfirmados[] = $rowConfirmado;
 }
 
 $conn->close();
@@ -99,6 +108,21 @@ $conn->close();
                     <?php if (isset($confirmarErro)): ?>
                         <p style="color: red;"><?= $confirmarErro ?></p>
                     <?php endif; ?>
+                </div>
+            </section>
+
+            <section class="schedule-section">
+                <h2 class="fieldset-label">Serviços Confirmados</h2>
+
+                <div class="button-container text-center">
+                    <table class="agendamentos-table">
+                        <!-- Cabeçalho da tabela aqui... -->
+                        <tbody>
+                            <?php foreach ($agendamentosConfirmados as $agendamento): ?>
+                                <!-- Linhas para serviços confirmados aqui... -->
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
                 </div>
             </section>
 
