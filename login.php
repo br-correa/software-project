@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+// Exibir mensagens de erro do PHP
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include("criar-conexao-db.php");
 
@@ -32,8 +36,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 $stmt->close();
                 $conn->close();
-                header('Location: home.html');
-                exit();
+
+                // Teste de redirecionamento
+                exit('Teste de redirecionamento bem-sucedido!');
             } else {
                 $loginError = "Credenciais incorretas. Tente novamente.";
             }
@@ -42,7 +47,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
+    // Exibição de mensagens de erro do MySQL
+    if ($stmt->error) {
+        echo "Erro MySQL: " . $stmt->error;
+    }
+
     $stmt->close();
     $conn->close();
+}
+
+// Exemplo de exibição de mensagem de erro
+if (isset($loginError)) {
+    echo '<p style="color: red;">' . $loginError . '</p>';
 }
 ?>
