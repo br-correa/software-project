@@ -30,13 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['email'] = $email;
                 $_SESSION['nome'] = $row['nome'];
                 $_SESSION['perfil'] = $row['perfil'];
-                $_SESSION['perfil'] = $row['rua'];
-                $_SESSION['perfil'] = $row['numero'];
-                $_SESSION['perfil'] = $row['bairro'];
-                $_SESSION['perfil'] = $row['cidade'];
-                $_SESSION['perfil'] = $row['estado'];
-                $_SESSION['perfil'] = $row['cep'];
-                                     
+                                                    
                 $data_hora_login = date('Y-m-d H:i:s');
                 $stmt = $conn->prepare("INSERT INTO tb_login (email, data_hora_login) VALUES (?, ?)");
                 $stmt->bind_param("ss", $email, $data_hora_login);
@@ -59,23 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo '<p>Nome salvo na sessão: ' . $_SESSION['nome'] . '</p>';
                 echo '<p>Perfil salvo na sessão: ' . $_SESSION['perfil'] . '</p>';
                 
-                // Dados de Endereço
-                echo '<p>Rua salvo na sessão: ' . $_SESSION['rua'] . '</p>';
-                echo '<p>Numero salvo na sessão: ' . $_SESSION['numero'] . '</p>';
-                echo '<p>Bairro salvo na sessão: ' . $_SESSION['bairro'] . '</p>';
-                echo '<p>Cidade salvo na sessão: ' . $_SESSION['cidade'] . '</p>';
-                echo '<p>Estado salvo na sessão: ' . $_SESSION['estado'] . '</p>';                
-                echo '<p>CEP salvo na sessão: ' . $_SESSION['cep'] . '</p>';
-
-                // Concatenando os campos para formar o endereço completo
-                $enderecoCompleto = $_SESSION['rua'] . ', ' . $_SESSION['numero'] . ', ' . $_SESSION['bairro'] . ', ' . $_SESSION['cidade'] . ', ' . $_SESSION['estado'] . ' - ' . $_SESSION['cep'];
-
-                // Salvando o endereço completo na sessão
-                $_SESSION['endereco_completo'] = $enderecoCompleto;
-
-                // Exibindo o endereço completo
-                echo '<p>Endereço completo salvo na sessão: ' . $_SESSION['endereco_completo'] . '</p>';
-
                 // Verifique o tipo de perfil e redirecione para a página apropriada
                 if ($_SESSION['perfil'] == 'cliente') {
 

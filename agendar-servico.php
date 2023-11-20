@@ -20,11 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         // Recupera o e-mail do usuário da sessão
         $emailUsuario = $_SESSION['email'];
-        $endereco = $_SESSION['enderecocompleto'];
 
         // Insere o agendamento no banco de dados com o e-mail do usuário
-        $insereAgendamento = $conn->prepare("INSERT INTO tb_agendar_servico (tipo_servico, data_servico, horario_servico, mensagem, email_usuario, endereco_completo, agendamento) VALUES (?, ?, ?, ?, ?, ?, 'Não confirmado')");
-        $insereAgendamento->bind_param("sssss", $servico, $data, $horario, $mensagem, $emailUsuario, $enderecoCompleto);
+        $insereAgendamento = $conn->prepare("INSERT INTO tb_agendar_servico (tipo_servico, data_servico, horario_servico, mensagem, email_usuario, agendamento) VALUES (?, ?, ?, ?, ?, 'Não confirmado')");
+        $insereAgendamento->bind_param("sssss", $servico, $data, $horario, $mensagem, $emailUsuario);
         $insereAgendamento->execute();
 
         // Verifica se o agendamento foi bem-sucedido

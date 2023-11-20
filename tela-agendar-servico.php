@@ -33,12 +33,6 @@ if (!isset($_SESSION['email'])) {
             </div>
             
             <div class="form-group">
-                <label for="endereco_completo">Endereço</label>
-                <input id="endereco_completo" name="endereco_completo" class="form-control" value="<?php echo isset($_SESSION['endereco_completo']) ? $_SESSION['endereco_completo'] : ''; ?>" readonly>
-            </div> 
-
-
-            <div class="form-group">
                 <label for="servico">Tipo de Serviço:</label>
                 <select id="servico" name="servico" class="form-control">
                     <option value="Lavar roupa">Lavar Roupa</option>
