@@ -15,9 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_servico']))
     $idServico = $_POST['id_servico'];
 
     // Atualiza o status do serviço para 'Confirmado'
-    $stmt = $conn->prepare("UPDATE tb_agendar_servico SET agendamento = 'Confirmado' WHERE id_servico = ?");
+    $stmt = $conn->prepare("UPDATE tb_agendar_servico SET agendamento = 'Confirmado' WHERE servico_id = ?");
     $stmt->bind_param("i", $idServico);
-    
+
     if ($stmt->execute()) {
         // Atualização bem-sucedida
         header("Location: {$_SERVER['PHP_SELF']}"); // Redireciona para a mesma página para evitar o reenvio do formulário
@@ -62,7 +62,8 @@ $conn->close();
             <h2 class="fieldset-label text-center">Seja bem-vindo <?php echo $_SESSION['nome']; ?>!</h2>                     
             <section class="schedule-section">
                 <h2 class="fieldset-label">Confirmar Serviços Agendados</h2>
-                <div class="button-container text-center"></br>
+
+                <div class="button-container text-center">
                     <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                         <table class="agendamentos-table">
                             <thead>
@@ -96,6 +97,7 @@ $conn->close();
                         <p style="color: red;"><?= $confirmarErro ?></p>
                     <?php endif; ?>
                 </div>
+
             </section>
             <div id="user-info" class="text-center"></br>                                   
                 <a href="logout.php" class="btn btn-danger">Sair</a>
