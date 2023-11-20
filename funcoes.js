@@ -11,3 +11,12 @@ function redirecionarParaAgendarServico(tipoServico) {
     // Exemplo: redirecionar para a página de agendamento com base no tipo de serviço
     window.location.href = 'agendar-servico.html';
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var email = urlParams.get('email');
+
+    if (email) {
+        document.getElementById('user-email').innerText = email;
+    }
+});

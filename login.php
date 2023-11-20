@@ -41,9 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo '<p>Login bem-sucedido! Redirecionando para home.html...</p>';
                 echo '<script>
                         setTimeout(function() {
-                            window.location.href = "home.html";
-                        }, 5000); // 5000 milissegundos = 5 segundos
-                      </script>';
+                            window.location.href = "home.html?email=' . $email . '";
+                        }, 5000);
+                    </script>';
                 exit();
 
             } else {
