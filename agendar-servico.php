@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo '<p>Agendamento bem-sucedido. Redirecionando para a página de sucesso...</p>';
             echo '<script>
                     setTimeout(function() {
-                        window.location.href = "home.html";
+                        window.location.href = "home.php";
                     }, 5000); // 5000 milissegundos = 5 segundos
                   </script>';
             exit();
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo '<p>Erro ao agendar o serviço. Tente novamente...</p>';
             echo '<script>
                     setTimeout(function() {
-                        window.location.href = "agendar-servico.html";
+                        window.location.href = "tela-agendar-servico.php";
                     }, 5000); // 5000 milissegundos = 5 segundos
                   </script>';
             exit();
