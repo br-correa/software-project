@@ -12,7 +12,7 @@ include("criar-conexao-db.php");
 
 // Consulta SQL para obter os serviços agendados do usuário
 $email = $_SESSION['email'];
-$sql = "SELECT * FROM tb_agendar_servico WHERE email = ?";
+$sql = "SELECT * FROM tb_agendar_servico WHERE email_usuario = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $email);
 $stmt->execute();
