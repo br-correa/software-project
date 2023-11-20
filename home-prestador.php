@@ -73,7 +73,7 @@ $conn->close();
                                 
             
             <section class="schedule-section">
-                <h2 class="fieldset-label">Serviços Agendados Não Confirmados</h2>
+                <h2 class="fieldset-label">Agendamentos pendentes</h2>
 
                 <div class="button-container text-center">
                 <?php if (!empty($agendamentosPendentes)): ?>
@@ -109,14 +109,14 @@ $conn->close();
                     </table>
 
                 <?php else: ?>
-                    <p>Nenhum serviço não confirmado no momento.</p>
+                    <p>Você confirmou todos os agendamentos pendentes. Obrigado!</p>
                 <?php endif; ?>
 
                 </div>
             </section>
 
             <section class="schedule-section">
-                <h2 class="fieldset-label">Serviços Agendados Confirmados</h2>
+                <h2 class="fieldset-label">Serviços Confirmados</h2>
 
                 <div class="button-container text-center">
                 <?php if (!empty($agendamentosConfirmados)): ?>
@@ -145,7 +145,7 @@ $conn->close();
                     </table>
                     
                 <?php else: ?>
-                    <p>Nenhum serviço confirmado no momento.</p>
+                    <p>Você não possui nenhum serviço confirmado até o momento!</p>
                 <?php endif; ?>
 
                 </div>

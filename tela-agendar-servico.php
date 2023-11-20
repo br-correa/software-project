@@ -30,7 +30,13 @@ if (!isset($_SESSION['email'])) {
             <div class="form-group">
                 <label for="email">Email</label>
                 <input id="email" name="email" class="form-control" value="<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>" readonly>
-            </div>         
+            </div>
+            
+            <div class="form-group">
+                <label for="endereco_completo">Endereço</label>
+                <input id="endereco_completo" name="endereco_completo" class="form-control" value="<?php echo isset($_SESSION['endereco_completo']) ? $_SESSION['endereco_completo'] : ''; ?>" readonly>
+            </div> 
+
 
             <div class="form-group">
                 <label for="servico">Tipo de Serviço:</label>
