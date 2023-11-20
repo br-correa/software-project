@@ -64,7 +64,7 @@ $conn->close();
                                         <td><?= isset($agendamento['mensagem']) ? $agendamento['mensagem'] : '' ?></td>
                                         <td><?= $agendamento['agendamento'] ?></td>
                                         <td>
-                                            <button type="button" class="btn btn-success" onclick="confirmarServico(<?= $agendamento['id_servico'] ?>)">Confirmar</button>
+                                            <button type="button" class="btn btn-success" onclick="confirmarServico(<?= htmlspecialchars($agendamento['id_servico'], ENT_QUOTES, 'UTF-8') ?>)">Confirmar</button>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
