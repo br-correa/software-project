@@ -29,7 +29,7 @@ if (!isset($_SESSION['email'])) {
             
             <div class="form-group">
                 <label for="email">Email</label>
-                <input id="email" name="email" class="form-control" value="<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>">
+                <input id="email" name="email" class="form-control" value="<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>" readonly>
             </div>         
 
             <div class="form-group">
@@ -58,7 +58,8 @@ if (!isset($_SESSION['email'])) {
             </div>
             
             <div class="form-group text-center">
-                <button class="button-label" type="submit">Agendar</button>
+                <button class="button-label" onclick="voltarParaHome()" style="width: 90px; height: 45px;">Voltar</button>
+                <button class="button-label" type="submit" style="width: 90px; height: 45px;">Agendar</button>
             </div>
             
         </form>

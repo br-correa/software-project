@@ -29,7 +29,7 @@ include("criar-conexao-db.php");
                                    
         <div class="content">  
             
-            <h2 class="fieldset-label text-center">Seja Bem-vindo, <?php echo $_SESSION['nome']; ?>!</h2>
+            <h2 class="fieldset-label text-center">Seja bem-vindo <?php echo $_SESSION['nome']; ?>!</h2>
                      
             <section class="schedule-section"></br> 
                 
