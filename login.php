@@ -53,6 +53,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo '<p>Nome salvo na sessão: ' . $_SESSION['nome'] . '</p>';
                 echo '<p>Perfil salvo na sessão: ' . $_SESSION['perfil'] . '</p>';
 
+                // Verifique o tipo de perfil e redirecione para a página apropriada
+                if ($_SESSION['perfil'] == 'cliente') {
+
+                    echo '<script>
+                    setTimeout(function() {
+                        window.location.href = "home.php?email=' . urlencode($email) . '";
+                    }, 5000);
+                    </script>';
+                    exit();
+
+                } elseif ($_SESSION['perfil'] == 'prestador') {
+
+                    echo '<script>
+                    setTimeout(function() {
+                        window.location.href = "home-prestador.php?email=' . urlencode($email) . '";
+                    }, 5000);
+                    </script>';
+                    exit();
+
+                } else {
+
+                    // Redirecionamento padrão
+                    echo '<script>
+                    setTimeout(function() {
+                        window.location.href = "home.php?email=' . urlencode($email) . '";
+                    }, 5000);
+                    </script>';
+                    exit();
+
+                }
+
+
                 // Adicione um atraso de 5 segundos usando JavaScript
                 echo '<script>
                 setTimeout(function() {

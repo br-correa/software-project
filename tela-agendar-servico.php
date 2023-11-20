@@ -35,9 +35,9 @@ if (!isset($_SESSION['email'])) {
             <div class="form-group">
                 <label for="servico">Tipo de Serviço:</label>
                 <select id="servico" name="servico" class="form-control">
-                    <option value="lavar-roupa">Lavar Roupa</option>
-                    <option value="passar-roupa">Passar Roupa</option>
-                    <option value="lavar-casa">Lavar Casa</option>
+                    <option value="Lavar roupa">Lavar Roupa</option>
+                    <option value="Passar roupa">Passar Roupa</option>
+                    <option value="Limpar casa">Limpar Casa</option>
                     <!-- Adicione mais opções de serviço conforme necessário -->
                 </select>
             </div>
