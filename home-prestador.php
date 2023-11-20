@@ -10,6 +10,26 @@ if (!isset($_SESSION['email'])) {
 // Conexão com o banco de dados
 include("criar-conexao-db.php");
 
+// Verifica se o formulário foi submetido
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_servico'])) {
+    $idServico = $_POST['id_servico'];
+
+    // Atualiza o status do serviço para 'Confirmado'
+    $stmt = $conn->prepare("UPDATE tb_agendar_servico SET agendamento = 'Confirmado' WHERE id_servico = ?");
+    $stmt->bind_param("i", $idServico);
+    
+    if ($stmt->execute()) {
+        // Atualização bem-sucedida
+        header("Location: {$_SERVER['PHP_SELF']}"); // Redireciona para a mesma página para evitar o reenvio do formulário
+        exit();
+    } else {
+        // Erro ao confirmar o serviço
+        $confirmarErro = "Erro ao confirmar o serviço. Tente novamente.";
+    }
+
+    $stmt->close();
+}
+
 // Consulta SQL para obter os serviços pendentes de confirmação 
 $sql = "SELECT * FROM tb_agendar_servico WHERE agendamento = 'Não confirmado'";
 $result = $conn->query($sql);
@@ -43,7 +63,7 @@ $conn->close();
             <section class="schedule-section">
                 <h2 class="fieldset-label">Confirmar Serviços Agendados</h2>
                 <div class="button-container text-center"></br>
-                    <form>
+                    <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                         <table class="agendamentos-table">
                             <thead>
                                 <tr>
@@ -64,13 +84,17 @@ $conn->close();
                                         <td><?= isset($agendamento['mensagem']) ? $agendamento['mensagem'] : '' ?></td>
                                         <td><?= $agendamento['agendamento'] ?></td>
                                         <td>
-                                            <button type="button" class="btn btn-success" onclick="confirmarServico(<?= htmlspecialchars($agendamento['id_servico'], ENT_QUOTES, 'UTF-8') ?>)">Confirmar</button>
+                                            <input type="hidden" name="id_servico" value="<?= $agendamento['id_servico'] ?>">
+                                            <button type="submit" class="btn btn-success" name="confirmar_servico">Confirmar</button>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
                     </form>
+                    <?php if (isset($confirmarErro)): ?>
+                        <p style="color: red;"><?= $confirmarErro ?></p>
+                    <?php endif; ?>
                 </div>
             </section>
             <div id="user-info" class="text-center"></br>                                   
@@ -83,27 +107,5 @@ $conn->close();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <script>
-        function confirmarServico(idServico) {
-            $.ajax({
-                url: 'confirmar_servico.php',
-                type: 'POST',
-                data: { id_servico: idServico },
-                success: function(response) {
-                    if (response === 'success') {
-                        alert('Serviço confirmado com sucesso!');
-                        location.reload();
-                    } else {
-                        alert('Erro ao confirmar serviço. Tente novamente.');
-                    }
-                },
-                error: function() {
-                    alert('Erro de comunicação com o servidor. Tente novamente.');
-                }
-            });
-        }
-    </script>
-
 </body>
 </html>
-
