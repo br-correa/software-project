@@ -6,6 +6,3 @@ function redirecionarParaPaginaDeLogin() {
 // Adicione um ouvinte de evento ao botão "Voltar"
 document.getElementById("btn-voltar").addEventListener("click", redirecionarParaPaginaDeLogin);
 
-function voltarParaHome() {
-    window.location.href = "./home.php";
-}

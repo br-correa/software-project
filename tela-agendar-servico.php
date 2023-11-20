@@ -57,9 +57,8 @@ if (!isset($_SESSION['email'])) {
                 <textarea id="mensagem" name="mensagem" rows="4" class="form-control"></textarea>
             </div>
             
-            <div class="form-group text-center">
-                <button class="button-label" onclick="voltarParaHome()" style="width: 90px; height: 45px;">Voltar</button>
-                <button class="button-label" type="submit" style="width: 90px; height: 45px;">Agendar</button>
+            <div class="form-group text-center">                
+                <button class="button-label" type="submit">Agendar</button>
             </div>
             
         </form>
