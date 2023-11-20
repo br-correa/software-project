@@ -44,53 +44,47 @@ $conn->close();
         <h1 class="header-title">Limpa Já!</h1>
     </header>    
 
-    <div class="container">
-                                   
+    <div class="container">                               
         <div class="content">  
-            
             <h2 class="fieldset-label text-center">Seja bem-vindo <?php echo $_SESSION['nome']; ?>!</h2>                     
-                       
             <section class="schedule-section">
-
                 <h2 class="fieldset-label">Confirmar Serviços Agendados</h2>
-
                 <div class="button-container text-center"></br>
-                <form>
-                    <table class="agendamentos-table">
-                        <thead>
-                            <tr>
-                                <th>Tipo de Serviço</th>
-                                <th>Data</th>
-                                <th>Horário</th>
-                                <th>Mensagem Adicional</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($agendamentos as $agendamento): ?>
+                    <form>
+                        <table class="agendamentos-table">
+                            <thead>
                                 <tr>
-                                    <td><?= $agendamento['tipo_servico'] ?></td>
-                                    <td><?= $agendamento['data_servico'] ?></td>
-                                    <td><?= $agendamento['horario_servico'] ?></td>
-                                    <td><?= isset($agendamento['mensagem']) ? $agendamento['mensagem'] : '' ?></td>
-                                    <td><?= $agendamento['agendamento'] ?></td>
+                                    <th>Tipo de Serviço</th>
+                                    <th>Data</th>
+                                    <th>Horário</th>
+                                    <th>Mensagem Adicional</th>
+                                    <th>Status</th>
+                                    <th>Ações</th> <!-- Nova coluna para o botão -->
                                 </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </form>
-                    
+                            </thead>
+                            <tbody>
+                                <?php foreach ($agendamentos as $agendamento): ?>
+                                    <tr>
+                                        <td><?= $agendamento['tipo_servico'] ?></td>
+                                        <td><?= $agendamento['data_servico'] ?></td>
+                                        <td><?= $agendamento['horario_servico'] ?></td>
+                                        <td><?= isset($agendamento['mensagem']) ? $agendamento['mensagem'] : '' ?></td>
+                                        <td><?= $agendamento['agendamento'] ?></td>
+                                        <td>
+                                            <button type="button" class="btn btn-success" onclick="confirmarServico(<?= $agendamento['id_servico'] ?>)">Confirmar</button>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
-                
             </section>
-            
             <div id="user-info" class="text-center"></br>                                   
-                <!-- Adiciona o botão de logoff -->
                 <a href="logout.php" class="btn btn-danger">Sair</a>
             </div>
-            
         </div>
-    </div>      
+    </div>
     
     
 </body>
