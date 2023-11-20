@@ -28,6 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Verifica se a senha fornecida corresponde à senha no banco de dados
             if ($password === $row['senha']) {
                 $_SESSION['email'] = $email;
+                $_SESSION['nome'] = $row['nome'];
+                $_SESSION['perfil'] = $row['perfil'];
 
                 $data_hora_login = date('Y-m-d H:i:s');
                 $stmt = $conn->prepare("INSERT INTO tb_login (email, data_hora_login) VALUES (?, ?)");
@@ -48,6 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // Exibição do email antes do redirecionamento (apenas para depuração)
                 echo '<p>Email salvo na sessão: ' . $_SESSION['email'] . '</p>';
+                echo '<p>Nome salvo na sessão: ' . $_SESSION['nome'] . '</p>';
+                echo '<p>Perfil salvo na sessão: ' . $_SESSION['perfil'] . '</p>';
 
                 // Adicione um atraso de 5 segundos usando JavaScript
                 echo '<script>
