@@ -38,22 +38,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $conn->close();
 
                 // Teste de redirecionamento
-                exit('Login bem-sucedido!');
-
-                // Redirecionamento para home.html
-                header('Location: home.html');
+                echo '<p>Login bem-sucedido! Redirecionando para home.html...</p>';
+                echo '<script>
+                        setTimeout(function() {
+                            window.location.href = "home.html";
+                        }, 5000); // 5000 milissegundos = 5 segundos
+                      </script>';
                 exit();
 
             } else {
                 $loginError = "Credenciais incorretas. Tente novamente.";
-                // Redirecionamento para login.html
-                header('Location: login.html');
+                // Redirecionamento para login.html após 5 segundos
+                echo '<p>Credenciais incorretas. Redirecionando para login.html...</p>';
+                echo '<script>
+                        setTimeout(function() {
+                            window.location.href = "login.html";
+                        }, 5000); // 5000 milissegundos = 5 segundos
+                      </script>';
                 exit();
             }
         } else {
             $loginError = "Credenciais incorretas. Tente novamente.";
-            // Redirecionamento para login.html
-            header('Location: login.html');
+            // Redirecionamento para login.html após 5 segundos
+            echo '<p>Credenciais incorretas. Redirecionando para login.html...</p>';
+            echo '<script>
+                    setTimeout(function() {
+                        window.location.href = "login.html";
+                    }, 5000); // 5000 milissegundos = 5 segundos
+                  </script>';
             exit();
         }
     }
