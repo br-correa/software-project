@@ -46,10 +46,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Certifique-se de que a sessão seja salva antes de redirecionar
                 session_write_close();
 
+                // Exibição do email antes do redirecionamento (apenas para depuração)
+                echo '<p>Email salvo na sessão: ' . $_SESSION['email'] . '</p>';
+
                 // Redirecionamento após 5 segundos
                 echo '<script>
                         setTimeout(function() {
-                            window.location.href = "home.php";
+                            window.location.href = "home.html";
                         }, 5000);
                     </script>';
                 exit();
