@@ -9,6 +9,23 @@ if (!isset($_SESSION['email'])) {
 
 // Conexão com o banco de dados
 include("criar-conexao-db.php");
+
+// Consulta SQL para obter os serviços agendados do usuário
+$email = $_SESSION['email'];
+$sql = "SELECT * FROM tb_agendar_servico WHERE email = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Armazena os resultados em um array para exibição posterior
+$agendamentos = [];
+while ($row = $result->fetch_assoc()) {
+    $agendamentos[] = $row;
+}
+
+$stmt->close();
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -56,30 +73,19 @@ include("criar-conexao-db.php");
 
             </section>
             
-            <section class="schedule-section"></br> 
-                
+            <section>
                 <h2 class="fieldset-label">Serviços Agendados</h2>
-                               
-                <div class="button-container text-center">
-                    <form action="redirect.php" method="post">
-                        <button class="button" name="action" value="lavar">
-                            <img src="lavar-roupa.jpeg" alt="Lavar Roupas" /><br/>
-                            <span>Lavar</span>
-                        </button> 
-                
-                        <button class="button" name="action" value="passar">
-                            <img src="passar-roupa.jpeg" alt="Passar Roupas" /><br/>
-                            <span>Passar</span>
-                        </button>
-                    
-                        <button class="button" name="action" value="limpar">
-                            <img src="limpar-casa.jpeg" alt="Limpar Casa" /><br/>
-                            <span>Limpar</span>
-                        </button>
-                    </form>
+                <div class="agendamentos-container">
+                    <?php foreach ($agendamentos as $agendamento): ?>
+                        <div class="agendamento">
+                            <p>Tipo de Serviço: <?= $agendamento['tipo_servico'] ?></p>
+                            <p>Data: <?= $agendamento['data_servico'] ?></p>
+                            <p>Horário: <?= $agendamento['horario_servico'] ?></p>
+                            <p>Mensagem Adicional: <?= $agendamento['mensagem_adicional'] ?></p>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
-
-            </section> 
+            </section>
             
             <div id="user-info" class="text-center"></br>                                   
                 <!-- Adiciona o botão de logoff -->
