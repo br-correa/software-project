@@ -9,11 +9,6 @@ if (!isset($_SESSION['email'])) {
 
 // Conexão com o banco de dados
 include("criar-conexao-db.php");
-
-
-
-// Exibe o e-mail salvo na sessão
-echo '<p>Bem-vindo(a), ' . $_SESSION['email'] . '!</p>';
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +33,7 @@ echo '<p>Bem-vindo(a), ' . $_SESSION['email'] . '!</p>';
                      
             <section class="schedule-section"></br>
 
-                <h2 class="fieldset-label text-center">Meus Serviços Agendados</h2><br>
+                <h2 class="fieldset-label">Agendar Serviços</h2><br>
                 
                 <div class="button-container">
                     <form action="redirect.php" method="post">
@@ -63,7 +58,36 @@ echo '<p>Bem-vindo(a), ' . $_SESSION['email'] . '!</p>';
                     </form>
                 </div>
 
-            </section>             
+            </section>
+            
+            <section class="schedule-section"></br>
+
+                <h2 class="fieldset-label">Agendar Serviços</h2><br>
+                
+                <div class="button-container">
+                    <form action="redirect.php" method="post">
+                        <button class="button" name="action" value="lavar">
+                            <img src="lavar-roupa.jpeg" alt="Lavar Roupas" /><br/>
+                            <span>Lavar</span>
+                        </button>
+                    </form>
+                
+                    <form action="redirect.php" method="post">
+                        <button class="button" name="action" value="passar">
+                            <img src="passar-roupa.jpeg" alt="Passar Roupas" /><br/>
+                            <span>Passar</span>
+                        </button>
+                    </form>
+                
+                    <form action="redirect.php" method="post">
+                        <button class="button" name="action" value="limpar">
+                            <img src="limpar-casa.jpeg" alt="Limpar Casa" /><br/>
+                            <span>Limpar</span>
+                        </button>
+                    </form>
+                </div>
+
+            </section>            
                                   
             <div id="user-info" class="text-center"></br>                                   
                 <!-- Adiciona o botão de logoff -->

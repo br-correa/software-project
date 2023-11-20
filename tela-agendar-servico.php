@@ -6,9 +6,6 @@ if (!isset($_SESSION['email'])) {
     header("Location: login.html");
     exit();
 }
-
-// Exibe o e-mail salvo na sessão
-echo '<p>Bem-vindo(a), ' . $_SESSION['email'] . '!</p>';
 ?>
 
 <!DOCTYPE html>
