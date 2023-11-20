@@ -10,9 +10,9 @@ if (!isset($_SESSION['email'])) {
 // Conexão com o banco de dados
 include("criar-conexao-db.php");
 
-// Consulta SQL para obter os serviços agendados do usuário
+// Consulta SQL para obter os serviços pendentes de confirmação 
 $email = $_SESSION['email'];
-$sql = "SELECT * FROM tb_agendar_servico WHERE email_usuario = ?";
+$sql = "SELECT * FROM tb_agendar_servico WHERE agendamento = 'Não confirmado' ";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $email);
 $stmt->execute();
@@ -50,7 +50,7 @@ $conn->close();
                        
             <section class="schedule-section">
 
-                <h2 class="fieldset-label">Serviços Agendados</h2>
+                <h2 class="fieldset-label">Confirmar Serviços Agendados</h2>
 
                 <div class="button-container text-center"></br>
                 <form>
