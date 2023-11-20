@@ -11,12 +11,3 @@ function redirecionarParaAgendarServico(tipoServico) {
     // Exemplo: redirecionar para a página de agendamento com base no tipo de serviço
     window.location.href = 'agendar-servico.html';
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Recupere o email da sessão (você pode precisar ajustar se estiver usando algo diferente de PHP no servidor)
-    var email = "<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>";
-
-    if (email) {
-        document.getElementById('user-email').innerText = email;
-    }
-});
