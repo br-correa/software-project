@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+// Verifica se o usuário está logado
+if (!isset($_SESSION['email'])) {
+    header("Location: login.html");
+    exit();
+}
+
+// Exibe o e-mail salvo na sessão
+echo '<p>Bem-vindo(a), ' . $_SESSION['email'] . '!</p>';
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -17,6 +30,11 @@
         <form id="login-form" class="content" action="agendar-servico.php" method="POST">
             <h2 class="fieldset-label text-center">Agende seu serviço</h2><br>
             
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" name="email" class="form-control" value="<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>">
+            </div>         
+
             <div class="form-group">
                 <label for="servico">Tipo de Serviço:</label>
                 <select id="servico" name="servico" class="form-control">

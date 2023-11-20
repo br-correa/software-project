@@ -7,6 +7,11 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 
+// Conexão com o banco de dados
+include("criar-conexao-db.php");
+
+
+
 // Exibe o e-mail salvo na sessão
 echo '<p>Bem-vindo(a), ' . $_SESSION['email'] . '!</p>';
 ?>
