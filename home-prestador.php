@@ -1,3 +1,10 @@
+
+Sua consulta SQL está correta para obter os serviços pendentes de confirmação (agendamento = 'Não confirmado'). No entanto, você não precisa usar bind_param nesse caso, já que não há um marcador de posição na sua instrução SQL.
+
+Aqui está o trecho ajustado do seu código PHP:
+
+php
+Copy code
 <?php
 session_start();
 
@@ -11,12 +18,8 @@ if (!isset($_SESSION['email'])) {
 include("criar-conexao-db.php");
 
 // Consulta SQL para obter os serviços pendentes de confirmação 
-$email = $_SESSION['email'];
-$sql = "SELECT * FROM tb_agendar_servico WHERE agendamento = 'Não confirmado' ";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $email);
-$stmt->execute();
-$result = $stmt->get_result();
+$sql = "SELECT * FROM tb_agendar_servico WHERE agendamento = 'Não confirmado'";
+$result = $conn->query($sql);
 
 // Armazena os resultados em um array para exibição posterior
 $agendamentos = [];
@@ -24,7 +27,6 @@ while ($row = $result->fetch_assoc()) {
     $agendamentos[] = $row;
 }
 
-$stmt->close();
 $conn->close();
 ?>
 
