@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo '<p>Credenciais incorretas. Redirecionando para login.html...</p>';
             echo '<script>
                     setTimeout(function() {
-                        window.location.href = "login.html";
+                        window.location.href = "login.php";
                     }, 5000); // 5000 milissegundos = 5 segundos
                   </script>';
             exit();
