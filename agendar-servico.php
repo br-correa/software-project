@@ -18,9 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($servico) || empty($data) || empty($horario)) {
         $agendamentoError = "Preencha todos os campos obrigatórios.";
     } else {
-        // Insere o agendamento no banco de dados
-        $insereAgendamento = $conn->prepare("INSERT INTO tb_agendar_servico (tipo_servico, data_servico, horario_servico, mensagem) VALUES (?, ?, ?, ?)");
-        $insereAgendamento->bind_param("ssss", $servico, $data, $horario, $mensagem);
+        // Recupera o e-mail do usuário da sessão
+        $emailUsuario = $_SESSION['email'];
+
+        // Insere o agendamento no banco de dados com o e-mail do usuário
+        $insereAgendamento = $conn->prepare("INSERT INTO tb_agendar_servico (tipo_servico, data_servico, horario_servico, mensagem, email_usuario) VALUES (?, ?, ?, ?, ?)");
+        $insereAgendamento->bind_param("sssss", $servico, $data, $horario, $mensagem, $emailUsuario);
         $insereAgendamento->execute();
 
         // Verifica se o agendamento foi bem-sucedido
