@@ -38,12 +38,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $conn->close();
 
                 // Teste de redirecionamento
-                exit('Teste de redirecionamento bem-sucedido!');
+                exit('Login bem-sucedido!');
+
+                // Redirecionamento para home.html
+                header('Location: home.html');
+                exit();
+
             } else {
                 $loginError = "Credenciais incorretas. Tente novamente.";
+                // Redirecionamento para login.html
+                header('Location: login.html');
+                exit();
             }
         } else {
             $loginError = "Credenciais incorretas. Tente novamente.";
+            // Redirecionamento para login.html
+            header('Location: login.html');
+            exit();
         }
     }
 
