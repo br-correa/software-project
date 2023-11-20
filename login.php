@@ -39,6 +39,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // Teste de redirecionamento
                 echo '<p>Login bem-sucedido! Redirecionando para home.html...</p>';
+
+                // Após o login bem-sucedido
+                $_SESSION['email'] = $email;
+                
                 echo '<script>
                         setTimeout(function() {
                             window.location.href = "home.html?email=' . $email . '";

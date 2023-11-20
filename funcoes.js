@@ -17,6 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
     var email = urlParams.get('email');
 
     if (email) {
-        document.getElementById('email').innerText = email;
+        document.getElementById('user-email').innerText = email;
     }
 });
