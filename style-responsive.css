@@ -6,8 +6,8 @@ body {
     padding: 0;
     font-size: 14px;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column; /* Coloca os itens em coluna */
+    align-items: center; /* Centraliza os itens ao longo do eixo transversal (vertical) */
     min-height: 100vh;
 }
 
@@ -184,3 +184,18 @@ a:hover {
     vertical-align: middle;
 }
 
+.agendamentos-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px; /* Ajuste conforme necessário */
+}
+
+.agendamentos-table th, .agendamentos-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.agendamentos-table th {
+    background-color: #f2f2f2;
+}

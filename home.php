@@ -71,20 +71,38 @@ $conn->close();
                     </form>
                 </div>
 
-            </section>
+            </section></br>
             
-            <section>
+            <section class="schedule-section">
+
                 <h2 class="fieldset-label">Serviços Agendados</h2>
-                <div class="agendamentos-container">
-                    <?php foreach ($agendamentos as $agendamento): ?>
-                        <div class="agendamento">
-                            <p>Tipo de Serviço: <?= $agendamento['tipo_servico'] ?></p>
-                            <p>Data: <?= $agendamento['data_servico'] ?></p>
-                            <p>Horário: <?= $agendamento['horario_servico'] ?></p>
-                            <p>Mensagem Adicional: <?= $agendamento['mensagem_adicional'] ?></p>
-                        </div>
-                    <?php endforeach; ?>
+
+                <div class="button-container text-center"></br>
+                <form>
+                    <table class="agendamentos-table">
+                        <thead>
+                            <tr>
+                                <th>Tipo de Serviço</th>
+                                <th>Data</th>
+                                <th>Horário</th>
+                                <th>Mensagem Adicional</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($agendamentos as $agendamento): ?>
+                                <tr>
+                                    <td><?= $agendamento['tipo_servico'] ?></td>
+                                    <td><?= $agendamento['data_servico'] ?></td>
+                                    <td><?= $agendamento['horario_servico'] ?></td>
+                                    <td><?= isset($agendamento['mensagem_adicional']) ? $agendamento['mensagem_adicional'] : '' ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </form>
+                    
                 </div>
+                
             </section>
             
             <div id="user-info" class="text-center"></br>                                   

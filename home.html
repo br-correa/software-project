@@ -1,3 +1,4 @@
+<!--
 <?php
 session_start();
 
@@ -9,7 +10,25 @@ if (!isset($_SESSION['email'])) {
 
 // Conexão com o banco de dados
 include("criar-conexao-db.php");
+
+// Consulta SQL para obter os serviços agendados do usuário
+$email = $_SESSION['email'];
+$sql = "SELECT * FROM tb_agendar_servico WHERE email_usuario = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Armazena os resultados em um array para exibição posterior
+$agendamentos = [];
+while ($row = $result->fetch_assoc()) {
+    $agendamentos[] = $row;
+}
+
+$stmt->close();
+$conn->close();
 ?>
+-->
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -54,32 +73,39 @@ include("criar-conexao-db.php");
                     </form>
                 </div>
 
-            </section>
+            </section></br>
             
-            <section class="schedule-section"></br> 
-                
-                <h2 class="fieldset-label">Serviços Agendados</h2>
-                               
-                <div class="button-container text-center">
-                    <form action="redirect.php" method="post">
-                        <button class="button" name="action" value="lavar">
-                            <img src="lavar-roupa.jpeg" alt="Lavar Roupas" /><br/>
-                            <span>Lavar</span>
-                        </button> 
-                
-                        <button class="button" name="action" value="passar">
-                            <img src="passar-roupa.jpeg" alt="Passar Roupas" /><br/>
-                            <span>Passar</span>
-                        </button>
-                    
-                        <button class="button" name="action" value="limpar">
-                            <img src="limpar-casa.jpeg" alt="Limpar Casa" /><br/>
-                            <span>Limpar</span>
-                        </button>
-                    </form>
-                </div>
+            <section class="schedule-section">
 
-            </section> 
+                <h2 class="fieldset-label">Serviços Agendados</h2>
+
+                <div class="button-container text-center"></br>
+                <form>
+                    <table class="agendamentos-table">
+                        <thead>
+                            <tr>
+                                <th>Tipo de Serviço</th>
+                                <th>Data</th>
+                                <th>Horário</th>
+                                <th>Mensagem Adicional</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($agendamentos as $agendamento): ?>
+                                <tr>
+                                    <td><?= $agendamento['tipo_servico'] ?></td>
+                                    <td><?= $agendamento['data_servico'] ?></td>
+                                    <td><?= $agendamento['horario_servico'] ?></td>
+                                    <td><?= isset($agendamento['mensagem_adicional']) ? $agendamento['mensagem_adicional'] : '' ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </form>
+                    
+                </div>
+                
+            </section>
             
             <div id="user-info" class="text-center"></br>                                   
                 <!-- Adiciona o botão de logoff -->
