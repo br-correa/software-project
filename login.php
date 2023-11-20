@@ -25,8 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($result->num_rows === 1) {
             $row = $result->fetch_assoc();
-            // Verifica se a senha fornecida corresponde ao hash no banco de dados
-            if (password_verify($password, $row['senha'])) {
+            // Verifica se a senha fornecida corresponde à senha no banco de dados
+            if ($password === $row['senha']) {
                 $_SESSION['email'] = $email;
 
                 $data_hora_login = date('Y-m-d H:i:s');
