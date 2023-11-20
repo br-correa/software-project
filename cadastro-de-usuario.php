@@ -39,7 +39,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Executar a consulta
         if ($stmt->execute()) {
-            echo "Registro inserido com sucesso!";
+            
+            // Redirecionamento para login.html após 5 segundos
+            echo '<p>Registro inserido com sucesso! Redirecionando para login.html...</p>';
+            echo '<script>
+                    setTimeout(function() {
+                        window.location.href = "login.html";
+                    }, 5000); // 5000 milissegundos = 5 segundos
+                  </script>';
+            exit();
+
         } else {
             echo "Erro ao inserir o registro: " . $stmt->error;
         }
