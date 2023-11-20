@@ -23,34 +23,30 @@ include("criar-conexao-db.php");
 <body>
     <header class="header">
         <h1 class="header-title">Limpa Já!</h1>
-    </header>
-
-    <h1>Bem-vindo à sua página inicial, <?php echo $_SESSION['email']; ?>!</h1>
+    </header>    
 
     <div class="container">
                                    
-        <div class="content">              
+        <div class="content">  
+            
+            <h2 class="fieldset-label text-center">Seja Bem-vindo, <?php echo $_SESSION['email']; ?>!</h2>
                      
-            <section class="schedule-section"></br>
-
-                <h2 class="fieldset-label">Agendar Serviços</h2><br>
+            <section class="schedule-section"></br> 
                 
-                <div class="button-container">
+                <h2 class="fieldset-label">Agendar Serviços</h2>
+                               
+                <div class="button-container text-center">
                     <form action="redirect.php" method="post">
                         <button class="button" name="action" value="lavar">
                             <img src="lavar-roupa.jpeg" alt="Lavar Roupas" /><br/>
                             <span>Lavar</span>
-                        </button>
-                    </form>
+                        </button> 
                 
-                    <form action="redirect.php" method="post">
                         <button class="button" name="action" value="passar">
                             <img src="passar-roupa.jpeg" alt="Passar Roupas" /><br/>
                             <span>Passar</span>
                         </button>
-                    </form>
-                
-                    <form action="redirect.php" method="post">
+                    
                         <button class="button" name="action" value="limpar">
                             <img src="limpar-casa.jpeg" alt="Limpar Casa" /><br/>
                             <span>Limpar</span>
@@ -60,26 +56,22 @@ include("criar-conexao-db.php");
 
             </section>
             
-            <section class="schedule-section"></br>
-
-                <h2 class="fieldset-label">Agendar Serviços</h2><br>
+            <section class="schedule-section"></br> 
                 
-                <div class="button-container">
+                <h2 class="fieldset-label">Serviços Agendados</h2>
+                               
+                <div class="button-container text-center">
                     <form action="redirect.php" method="post">
                         <button class="button" name="action" value="lavar">
                             <img src="lavar-roupa.jpeg" alt="Lavar Roupas" /><br/>
                             <span>Lavar</span>
-                        </button>
-                    </form>
+                        </button> 
                 
-                    <form action="redirect.php" method="post">
                         <button class="button" name="action" value="passar">
                             <img src="passar-roupa.jpeg" alt="Passar Roupas" /><br/>
                             <span>Passar</span>
                         </button>
-                    </form>
-                
-                    <form action="redirect.php" method="post">
+                    
                         <button class="button" name="action" value="limpar">
                             <img src="limpar-casa.jpeg" alt="Limpar Casa" /><br/>
                             <span>Limpar</span>
@@ -87,8 +79,8 @@ include("criar-conexao-db.php");
                     </form>
                 </div>
 
-            </section>            
-                                  
+            </section> 
+            
             <div id="user-info" class="text-center"></br>                                   
                 <!-- Adiciona o botão de logoff -->
                 <a href="logout.php" class="btn btn-danger">Sair</a>
