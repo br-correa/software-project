@@ -1,10 +1,3 @@
-
-Sua consulta SQL está correta para obter os serviços pendentes de confirmação (agendamento = 'Não confirmado'). No entanto, você não precisa usar bind_param nesse caso, já que não há um marcador de posição na sua instrução SQL.
-
-Aqui está o trecho ajustado do seu código PHP:
-
-php
-Copy code
 <?php
 session_start();
 
@@ -85,12 +78,32 @@ $conn->close();
             </div>
         </div>
     </div>
-    
-    
-</body>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="funcoes.js"></script>
 
+    <script>
+        function confirmarServico(idServico) {
+            $.ajax({
+                url: 'confirmar_servico.php',
+                type: 'POST',
+                data: { id_servico: idServico },
+                success: function(response) {
+                    if (response === 'success') {
+                        alert('Serviço confirmado com sucesso!');
+                        location.reload();
+                    } else {
+                        alert('Erro ao confirmar serviço. Tente novamente.');
+                    }
+                },
+                error: function() {
+                    alert('Erro de comunicação com o servidor. Tente novamente.');
+                }
+            });
+        }
+    </script>
+
+</body>
 </html>
+
