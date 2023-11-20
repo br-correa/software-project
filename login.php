@@ -49,12 +49,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Exibição do email antes do redirecionamento (apenas para depuração)
                 echo '<p>Email salvo na sessão: ' . $_SESSION['email'] . '</p>';
 
-                // Redirecionamento após 5 segundos
+                // Adicione um atraso de 5 segundos usando JavaScript
                 echo '<script>
-                        setTimeout(function() {
-                            window.location.href = "home.html";
-                        }, 5000);
-                    </script>';
+                setTimeout(function() {
+                    window.location.href = "home.html?email=' . urlencode($email) . '";
+                }, 5000);
+                </script>';
                 exit();
 
             } else {
