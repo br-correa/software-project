@@ -1,3 +1,8 @@
+<?php
+session_start();
+// Exibição para depuração
+var_dump($_SESSION);
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -16,15 +21,16 @@
                                    
         <div class="content">  
             
-           <!-- Adiciona a label para mostrar o usuário autenticado -->
-           <div id="user-info">
-            <label id="user-label">Usuário: </label>
+            <!-- Adiciona a label para mostrar o usuário autenticado -->
+            <div id="user-info">
+                <label id="user-label">Usuário: </label>
             
-            <!-- Exibe o email da sessão -->
-            <span id="user-email"><?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?></span>
+                <!-- Exibe o email da sessão -->
+                <span id="user-email"><?php echo isset($_SESSION['email']) ? $_SESSION['email'] : 'N/A'; ?></span>
             
-            <!-- Adiciona o botão de logoff -->
-            <a href="logout.php" class="btn btn-danger">Logoff</a>
+                <!-- Adiciona o botão de logoff -->
+                <a href="logout.php" class="btn btn-danger">Logoff</a>
+            </div>
             
             <section class="schedule-section"></br>
                 <h2 class="fieldset-label">Serviços</h2>
@@ -74,14 +80,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.6/jquery.inputmask.min.js"></script>
     <script src="funcoes.js"></script>
     <script src="validacoes.js"></script>
-
-    <!-- Adicione este script para obter o email da sessão -->
-    <script>
-        $(document).ready(function() {
-            var userEmail = $("#user-email").text();
-            // Use o email da sessão como necessário
-            console.log("Email da sessão:", userEmail);
-        });
-    </script>
 
 </html>
