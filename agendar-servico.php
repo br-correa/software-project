@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $emailUsuario = $_SESSION['email'];
 
         // Insere o agendamento no banco de dados com o e-mail do usuário
-        $insereAgendamento = $conn->prepare("INSERT INTO tb_agendar_servico (tipo_servico, data_servico, horario_servico, mensagem, email_usuario) VALUES (?, ?, ?, ?, ?)");
+        $insereAgendamento = $conn->prepare("INSERT INTO tb_agendar_servico (tipo_servico, data_servico, horario_servico, mensagem, email_usuario, agendamento) VALUES (?, ?, ?, ?, ?, 'Não confirmado')");
         $insereAgendamento->bind_param("sssss", $servico, $data, $horario, $mensagem, $emailUsuario);
         $insereAgendamento->execute();
 
