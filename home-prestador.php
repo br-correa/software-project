@@ -76,6 +76,8 @@ $conn->close();
                 <h2 class="fieldset-label">Confirmar Serviços Agendados</h2>
 
                 <div class="button-container text-center">
+                <?php if (!empty($agendamentosPendentes)): ?>
+
                     <table class="agendamentos-table">
                         <thead>
                             <tr>
@@ -106,16 +108,19 @@ $conn->close();
                         </tbody>
                     </table>
 
-                    <?php if (isset($confirmarErro)): ?>
-                        <p style="color: red;"><?= $confirmarErro ?></p>
-                    <?php endif; ?>
+                <?php else: ?>
+                    <p>Nenhum serviço não confirmado no momento.</p>
+                <?php endif; ?>
+
                 </div>
             </section>
 
             <section class="schedule-section">
-                <h2 class="fieldset-label">Confirmar Serviços Agendados</h2>
+                <h2 class="fieldset-label">Serviços Agendados Confirmados</h2>
 
                 <div class="button-container text-center">
+                <?php if (!empty($agendamentosConfirmados)): ?>
+
                     <table class="agendamentos-table">
                         <thead>
                             <tr>
@@ -139,9 +144,10 @@ $conn->close();
                         </tbody>
                     </table>
                     
-                    <?php if (isset($confirmarErro)): ?>
-                        <p style="color: red;"><?= $confirmarErro ?></p>
-                    <?php endif; ?>
+                <?php else: ?>
+                    <p>Nenhum serviço confirmado no momento.</p>
+                <?php endif; ?>
+
                 </div>
             </section>
 
