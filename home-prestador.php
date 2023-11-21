@@ -16,9 +16,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_servico']))
 
     // Atualiza o status do serviço para 'Confirmado'
     $stmt = $conn->prepare("UPDATE tb_agendar_servico AS a
-                       JOIN tb_cadastro_de_usuarios AS u ON a.usuario_id = u.usuario_id
-                       SET a.agendamento = 'Confirmado' 
-                       WHERE a.servico_id = ?");
+    JOIN tb_cadastro_de_usuarios AS u ON a.email_usuario = u.email
+    SET a.agendamento = 'Confirmado' 
+    WHERE a.servico_id = ?");
+
                        
     $stmt->bind_param("i", $idServico);
 
@@ -35,10 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_servico']))
 }
 
 // Consulta SQL para obter os serviços pendentes de confirmação 
-$sqlPendentes = "SELECT tb_agendar_servico.*, tb_cadastro_de_usuarios.nome AS nome_cliente, tb_cadastro_de_usuarios.endereco AS endereco_cliente 
-                FROM tb_agendar_servico 
-                JOIN tb_cadastro_de_usuarios ON tb_agendar_servico.usuario_id = tb_cadastro_de_usuarios.usuario_id
-                WHERE tb_agendar_servico.agendamento = 'Não confirmado'";
+$sqlPendentes = "SELECT a.*, u.nome AS nome_cliente, u.endereco AS endereco_cliente 
+                FROM tb_agendar_servico a
+                JOIN tb_cadastro_de_usuarios u ON a.email_usuario = u.email
+                WHERE a.agendamento = 'Não confirmado'";
 
 $resultPendentes = $conn->query($sqlPendentes);
 
