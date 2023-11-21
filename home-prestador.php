@@ -49,6 +49,17 @@ while ($rowPendente = $resultPendentes->fetch_assoc()) {
     $agendamentosPendentes[] = $rowPendente;
 }
 
+// Lógica para atualizar o status
+foreach ($agendamentosConfirmados as &$agendamento) {
+    $dataServico = strtotime($agendamento['data_servico']);
+    $dataAtual = strtotime(date('Y-m-d'));
+
+    // Se a data do serviço já passou
+    if ($dataServico < $dataAtual) {
+        $agendamento['agendamento'] = 'Realizado';
+    }
+}
+
 // Consulta SQL para obter os serviços confirmados
 $sqlConfirmados = "SELECT a.*, u.nome AS nome_cliente, u.endereco AS endereco_cliente 
                 FROM tb_agendar_servico a
