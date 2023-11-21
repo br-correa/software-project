@@ -51,7 +51,7 @@ while ($rowPendente = $resultPendentes->fetch_assoc()) {
 $sqlConfirmados = "SELECT a.*, u.nome AS nome_cliente, u.endereco AS endereco_cliente, a.prestador 
                  FROM tb_agendar_servico a
                  JOIN tb_cadastro_de_usuarios u ON a.email_usuario = u.email
-                 WHERE a.agendamento = 'Confirmado' AND a.email_usuario = '{$_SESSION['email']}'";
+                 WHERE a.agendamento = 'Confirmado' AND u.nome = '{$_SESSION['nome']}'";
 
 $resultConfirmados = $conn->query($sqlConfirmados);
 
