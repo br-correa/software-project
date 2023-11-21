@@ -80,11 +80,11 @@ $conn->close();
 
     <div class="container">                               
         <div class="content">  
-            <h2 class="fieldset-label text-center">Seja bem-vindo <?php echo $_SESSION['nome']; ?>!</h2>
+            <h2 class="fieldset-label text-center">Seja muito bem-vindo <?php echo $_SESSION['nome']; ?>!!!</h2>
                                 
             
             <section class="schedule-section">
-                <h2 class="fieldset-label">Agendamentos pendentes</h2>
+                <h2 class="fieldset-label">Serviços Pendentes</h2>
 
                 <div class="button-container text-center">
                 <?php if (!empty($agendamentosPendentes)): ?>
@@ -124,14 +124,14 @@ $conn->close();
                     </table>
 
                 <?php else: ?>
-                    <p>Você confirmou todos os agendamentos pendentes. Obrigado!</p>
+                    <p>Não temos nenhum seviço pendente até o momento!</p>
                 <?php endif; ?>
 
                 </div>
             </section>
 
             <section class="schedule-section">
-                <h2 class="fieldset-label">Serviços Confirmados</h2>
+                <h2 class="fieldset-label">Meus Agendamentos</h2>
 
                 <div class="button-container text-center">
                 <?php if (!empty($agendamentosConfirmados)): ?>
@@ -166,7 +166,7 @@ $conn->close();
                     </table>
                     
                 <?php else: ?>
-                    <p>Você não possui nenhum serviço confirmado até o momento!</p>
+                    <p>Você não agendou nenhum serviço até o momento!</p>
                 <?php endif; ?>
 
                 </div>

@@ -46,7 +46,7 @@ $conn->close();
                                    
         <div class="content">  
             
-            <h2 class="fieldset-label text-center">Seja bem-vindo <?php echo $_SESSION['nome']; ?>!</h2>
+            <h2 class="fieldset-label text-center">Seja muito bem-vindo <?php echo $_SESSION['nome']; ?>!!!</h2>
                      
             <section class="schedule-section"></br> 
                 
@@ -75,7 +75,7 @@ $conn->close();
             
             <section class="schedule-section">
 
-                <h2 class="fieldset-label">Serviços Agendados</h2>
+                <h2 class="fieldset-label">Meus Agendamentos</h2>
 
                 <div class="button-container text-center"></br>
                 <form>
