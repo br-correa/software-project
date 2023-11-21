@@ -14,14 +14,12 @@ include("criar-conexao-db.php");
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_servico'])) {
     $idServico = $_POST['id_servico'];
 
-    // Atualiza o status do serviço para 'Confirmado'
-    $stmt = $conn->prepare("UPDATE tb_agendar_servico AS a
-    JOIN tb_cadastro_de_usuarios AS u ON a.email_usuario = u.email
-    SET a.agendamento = 'Confirmado' 
-    WHERE a.servico_id = ?");
+    // Obtém o nome do usuário da sessão para usar como prestador
+    $nomePrestador = $_SESSION['nome'];
 
-                       
-    $stmt->bind_param("i", $idServico);
+    // Atualiza o status do serviço para 'Confirmado' e atribui o prestador
+    $stmt = $conn->prepare("UPDATE tb_agendar_servico SET agendamento = 'Confirmado', prestador = ? WHERE servico_id = ?");
+    $stmt->bind_param("si", $nomePrestador, $idServico);
 
     if ($stmt->execute()) {
         // Atualização bem-sucedida
@@ -47,21 +45,6 @@ $resultPendentes = $conn->query($sqlPendentes);
 $agendamentosPendentes = [];
 while ($rowPendente = $resultPendentes->fetch_assoc()) {
     $agendamentosPendentes[] = $rowPendente;
-}
-
-// Lógica para atualizar o prestador
-foreach ($agendamentosConfirmados as &$agendamento) {
-    // Verifica se o prestador não está definido
-    if (empty($agendamento['prestador']) && isset($_SESSION['nome'])) {
-        // Atribui o nome do prestador da sessão
-        $agendamento['prestador'] = $_SESSION['nome'];
-        
-        // Atualiza no banco de dados
-        $stmt = $conn->prepare("UPDATE tb_agendar_servico SET prestador = ? WHERE servico_id = ?");
-        $stmt->bind_param("si", $agendamento['prestador'], $agendamento['servico_id']);
-        $stmt->execute();
-        $stmt->close();
-    }
 }
 
 // Consulta SQL para obter os serviços confirmados
