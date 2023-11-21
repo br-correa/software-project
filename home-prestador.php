@@ -49,22 +49,26 @@ while ($rowPendente = $resultPendentes->fetch_assoc()) {
     $agendamentosPendentes[] = $rowPendente;
 }
 
-// Lógica para atualizar o status
+// Lógica para atualizar o prestador
 foreach ($agendamentosConfirmados as &$agendamento) {
-    $dataServico = strtotime($agendamento['data_servico']);
-    $dataAtual = strtotime(date('Y-m-d'));
-
-    // Se a data do serviço já passou
-    if ($dataServico < $dataAtual) {
-        $agendamento['agendamento'] = 'Realizado';
+    // Verifica se o prestador não está definido
+    if (empty($agendamento['prestador']) && isset($_SESSION['nome'])) {
+        // Atribui o nome do prestador da sessão
+        $agendamento['prestador'] = $_SESSION['nome'];
+        
+        // Atualiza no banco de dados
+        $stmt = $conn->prepare("UPDATE tb_agendar_servico SET prestador = ? WHERE servico_id = ?");
+        $stmt->bind_param("si", $agendamento['prestador'], $agendamento['servico_id']);
+        $stmt->execute();
+        $stmt->close();
     }
 }
 
 // Consulta SQL para obter os serviços confirmados
-$sqlConfirmados = "SELECT a.*, u.nome AS nome_cliente, u.endereco AS endereco_cliente 
-                FROM tb_agendar_servico a
-                JOIN tb_cadastro_de_usuarios u ON a.email_usuario = u.email
-                WHERE a.agendamento = 'Confirmado'";
+$sqlConfirmados = "SELECT a.*, u.nome AS nome_cliente, u.endereco AS endereco_cliente, a.prestador 
+                 FROM tb_agendar_servico a
+                 JOIN tb_cadastro_de_usuarios u ON a.email_usuario = u.email
+                 WHERE a.agendamento = 'Confirmado'";
 
 $resultConfirmados = $conn->query($sqlConfirmados);
 
@@ -156,9 +160,10 @@ $conn->close();
                                 <th>Data</th>
                                 <th>Horário</th>
                                 <th>Mensagem Adicional</th>
-                                <th>Cliente</th>
-                                <th>Endereço</th>
                                 <th>Status</th>
+                                <th>Cliente</th>
+                                <th>Endereço</th>                                
+                                <th>Prestador</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -168,9 +173,10 @@ $conn->close();
                                     <td><?= $agendamento['data_servico'] ?></td>
                                     <td><?= $agendamento['horario_servico'] ?></td>
                                     <td><?= isset($agendamento['mensagem']) ? $agendamento['mensagem'] : '' ?></td>
+                                    <td><?= $agendamento['agendamento'] ?></td>
                                     <td><?= $agendamento['nome_cliente'] ?></td>
-                                    <td><?= $agendamento['endereco_cliente'] ?></td>
-                                    <td><?= $agendamento['agendamento'] ?></td>                                    
+                                    <td><?= $agendamento['endereco_cliente'] ?></td>                                    
+                                    <td><?= $agendamento['prestador'] ?></td>                                  
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
