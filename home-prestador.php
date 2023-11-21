@@ -15,7 +15,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_servico']))
     $idServico = $_POST['id_servico'];
 
     // Atualiza o status do serviço para 'Confirmado'
-    $stmt = $conn->prepare("UPDATE tb_agendar_servico SET agendamento = 'Confirmado' WHERE servico_id = ?");
+    $stmt = $conn->prepare("UPDATE tb_agendar_servico AS a
+                       JOIN tb_cadastro_de_usuarios AS u ON a.usuario_id = u.usuario_id
+                       SET a.agendamento = 'Confirmado' 
+                       WHERE a.servico_id = ?");
+                       
     $stmt->bind_param("i", $idServico);
 
     if ($stmt->execute()) {
@@ -31,7 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_servico']))
 }
 
 // Consulta SQL para obter os serviços pendentes de confirmação 
-$sqlPendentes = "SELECT * FROM tb_agendar_servico WHERE agendamento = 'Não confirmado'";
+$sqlPendentes = "SELECT tb_agendar_servico.*, tb_cadastro_de_usuarios.nome AS nome_cliente, tb_cadastro_de_usuarios.endereco AS endereco_cliente 
+                FROM tb_agendar_servico 
+                JOIN tb_cadastro_de_usuarios ON tb_agendar_servico.usuario_id = tb_cadastro_de_usuarios.usuario_id
+                WHERE tb_agendar_servico.agendamento = 'Não confirmado'";
+
 $resultPendentes = $conn->query($sqlPendentes);
 
 // Armazena os resultados em um array para exibição posterior
@@ -86,6 +94,8 @@ $conn->close();
                                 <th>Horário</th>
                                 <th>Mensagem Adicional</th>
                                 <th>Status</th>
+                                <th>Cliente</th>
+                                <th>Endereço</th>
                                 <th>Ações</th> <!-- Nova coluna para o botão -->
                             </tr>
                         </thead>
@@ -97,6 +107,8 @@ $conn->close();
                                     <td><?= $agendamento['horario_servico'] ?></td>
                                     <td><?= isset($agendamento['mensagem']) ? $agendamento['mensagem'] : '' ?></td>
                                     <td><?= $agendamento['agendamento'] ?></td>
+                                    <td><?= $agendamento['nome_cliente'] ?></td>
+                                    <td><?= $agendamento['endereco_cliente'] ?></td>
                                     <td>
                                         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                             <input type="hidden" name="id_servico" value="<?= $agendamento['servico_id'] ?>">
