@@ -50,7 +50,11 @@ while ($rowPendente = $resultPendentes->fetch_assoc()) {
 }
 
 // Consulta SQL para obter os serviços confirmados
-$sqlConfirmados = "SELECT * FROM tb_agendar_servico WHERE agendamento = 'Confirmado'";
+$sqlConfirmados = "SELECT a.*, u.nome AS nome_cliente, u.endereco AS endereco_cliente 
+                FROM tb_agendar_servico a
+                JOIN tb_cadastro_de_usuarios u ON a.email_usuario = u.email
+                WHERE a.agendamento = 'Confirmado'";
+
 $resultConfirmados = $conn->query($sqlConfirmados);
 
 // Armazena os resultados em um array para exibição posterior
