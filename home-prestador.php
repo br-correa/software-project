@@ -141,6 +141,8 @@ $conn->close();
                                 <th>Data</th>
                                 <th>Horário</th>
                                 <th>Mensagem Adicional</th>
+                                <th>Cliente</th>
+                                <th>Endereço</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -151,6 +153,8 @@ $conn->close();
                                     <td><?= $agendamento['data_servico'] ?></td>
                                     <td><?= $agendamento['horario_servico'] ?></td>
                                     <td><?= isset($agendamento['mensagem']) ? $agendamento['mensagem'] : '' ?></td>
+                                    <td><?= $agendamento['nome_cliente'] ?></td>
+                                    <td><?= $agendamento['endereco_cliente'] ?></td>
                                     <td><?= $agendamento['agendamento'] ?></td>                                    
                                 </tr>
                             <?php endforeach; ?>
